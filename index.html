@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taseen Jubair | Portfolio</title>
+  <title>Taseen Jubair - Web Developer Portfolio</title>
   <style>
     body {
       margin: 0;
@@ -15,6 +15,25 @@
       max-width: 720px;
       margin: 80px auto 16px;
       padding: 0 32px;
+    }
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skip-link:focus {
+      left: 16px;
+      top: 16px;
+      width: auto;
+      height: auto;
+      padding: 8px 12px;
+      background: #111827;
+      color: #fff;
+      border-radius: 6px;
+      z-index: 1000;
     }
     main {
       max-width: 720px;
@@ -34,11 +53,12 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <header>
     <h1>Taseen Jubair</h1>
     <p>I am Taseen Jubair, sharing my projects, skills, and growth journey.</p>
   </header>
-  <main>
+  <main id="main-content">
     <section>
       <h2>About</h2>
       <p>I focus on building clean, responsive web experiences and continuously improving my development skills.</p>
