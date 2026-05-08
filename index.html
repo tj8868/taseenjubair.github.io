@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>T.J. Bhuiyan | Data Scientist & AI Researcher</title>
+<title>H M Taseen Jubair Bhuiyan | Data Scientist & Researcher</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -535,110 +535,6 @@
     transform: none;
   }
 
-  /* PROJECTS */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    background: white;
-    border: 1px solid var(--rule);
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .project-card:hover {
-    border-color: var(--accent2);
-    transform: translateY(-2px);
-  }
-
-  .project-type {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent2);
-  }
-
-  .project-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.15rem;
-    line-height: 1.35;
-    color: var(--ink);
-  }
-
-  .project-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.7;
-    flex: 1;
-  }
-
-  .project-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .project-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--rule);
-    margin-top: auto;
-  }
-
-  .project-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.64rem;
-    letter-spacing: 0.08em;
-    padding: 0.2rem 0.6rem;
-    border-radius: 2px;
-  }
-
-  .project-badge.funded {
-    background: #e8f0d8;
-    border: 1px solid #b8d090;
-    color: var(--accent);
-  }
-
-  .project-badge.ongoing {
-    background: var(--tag-bg);
-    color: var(--muted);
-    border: 1px solid var(--rule);
-  }
-
-  .project-badge.delivered {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .project-links {
-    display: flex;
-    gap: 0.75rem;
-  }
-
-  .project-link {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid var(--accent2);
-    padding-bottom: 1px;
-    transition: color 0.2s;
-  }
-
-  .project-link:hover { color: var(--ink); }
-
   /* MOBILE */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
@@ -657,7 +553,6 @@
   <div class="nav-logo">T.J. Bhuiyan</div>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#education">Education</a></li>
@@ -668,9 +563,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">Data Scientist · AI Researcher · Healthcare & Public Health</p>
+    <p class="hero-eyebrow">Public Health · Data · Research</p>
     <h1 class="hero-name">T.J.<br><em>Bhuiyan</em></h1>
-    <p class="hero-desc">Researcher bridging public health and AI — applying machine learning (CNN, XGBoost, clustering), GIS spatial analysis, and Python data pipelines to real-world healthcare problems. Seeking roles as a Data Scientist, AI Engineer, or Researcher in the healthcare industry.</p>
+    <p class="hero-desc">Public health and development research professional with experience supporting healthcare, WASH, and disaster resilience projects through data-driven analysis, field coordination, and technical reporting.</p>
     <div class="hero-cta">
       <a href="#experience" class="btn btn-primary">View Experience</a>
       <a href="#contact" class="btn btn-outline">Get in Touch</a>
@@ -702,268 +597,101 @@
     <span class="section-num">01</span>
     <h2 class="section-title">Skills & Tools</h2>
   </div>
-  <style>
-    .tag.familiar {
-      background: transparent;
-      border: 1px dashed var(--muted);
-      color: var(--muted);
-      font-size: 0.68rem;
-    }
-    .skill-level-legend {
-      display: flex;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      align-items: center;
-    }
-    .skill-level-legend span { display: flex; align-items: center; gap: 0.5rem; }
-    .legend-dot { display: inline-block; width: 28px; height: 16px; border-radius: 2px; }
-    .legend-dot.proficient { background: var(--tag-bg); }
-    .legend-dot.familiar { background: transparent; border: 1px dashed var(--muted); }
-    .tag.proficient-highlight {
-      background: var(--highlight);
-      color: var(--accent);
-      font-weight: 500;
-      border: 1px solid var(--accent2);
-    }
-    .familiar-note {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      margin-top: 1.2rem;
-      padding-top: 1rem;
-      border-top: 1px dashed var(--rule);
-    }
-    .familiar-note span { margin-right: 0.5rem; }
-  </style>
-
-  <div class="skill-level-legend reveal">
-    <span><span class="legend-dot proficient" style="background:var(--highlight);border:1px solid var(--accent2);"></span> Proficient</span>
-    <span><span class="legend-dot proficient"></span> Working knowledge</span>
-    <span><span class="legend-dot familiar"></span> Familiar · fast learner</span>
-  </div>
-
   <div class="skills-grid">
-
     <div class="skill-group reveal">
-      <div class="skill-group-title">AI & Machine Learning</div>
+      <div class="skill-group-title">Field & Program</div>
       <div class="skill-tags">
-        <span class="tag proficient-highlight">Python (ML pipelines)</span>
-        <span class="tag proficient-highlight">XGBoost</span>
-        <span class="tag proficient-highlight">Random Forest</span>
-        <span class="tag proficient-highlight">Fuzzy C-Means</span>
-        <span class="tag proficient-highlight">K-Means</span>
-        <span class="tag">CNN / Deep Learning</span>
-        <span class="tag">TensorFlow / Keras</span>
-        <span class="tag">Logistic Regression</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag familiar">PyTorch</span>
-        <span class="tag familiar">NLP / Transformers</span>
-        <span class="tag familiar">Hugging Face</span>
-        <span class="tag familiar">Support Vector Machine</span>
-        <span class="tag familiar">Feature Engineering</span>
-      </div>
-    </div>
-
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Data & Programming</div>
-      <div class="skill-tags">
-        <span class="tag proficient-highlight">Python</span>
-        <span class="tag proficient-highlight">Pandas</span>
-        <span class="tag proficient-highlight">NumPy</span>
-        <span class="tag proficient-highlight">SQL</span>
-        <span class="tag">R</span>
-        <span class="tag">Microsoft Excel</span>
-        <span class="tag">Matplotlib</span>
-        <span class="tag familiar">FastAPI</span>
-        <span class="tag familiar">Power BI</span>
-        <span class="tag familiar">Tableau</span>
-      </div>
-    </div>
-
-    <div class="skill-group reveal">
-      <div class="skill-group-title">GIS & Spatial Analysis</div>
-      <div class="skill-tags">
-        <span class="tag proficient-highlight">ArcGIS Pro</span>
-        <span class="tag proficient-highlight">Vulnerability Mapping</span>
-        <span class="tag proficient-highlight">Risk Mapping</span>
-        <span class="tag">QGIS</span>
-        <span class="tag familiar">Raster & Vector Analysis</span>
-      </div>
-    </div>
-
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Research & Field</div>
-      <div class="skill-tags">
-        <span class="tag proficient-highlight">Scoping Reviews</span>
-        <span class="tag proficient-highlight">KII / FGD</span>
-        <span class="tag proficient-highlight">Data Validation & QA</span>
+        <span class="tag">Field Coordination</span>
+        <span class="tag">Stakeholder Engagement</span>
+        <span class="tag">Program Monitoring</span>
         <span class="tag">WASH Assessment</span>
-        <span class="tag">KoboToolbox</span>
-        <span class="tag">Technical Report Writing</span>
-        <span class="tag familiar">DRR Frameworks</span>
+        <span class="tag">KII / FGD</span>
+        <span class="tag">DRR Frameworks</span>
       </div>
     </div>
-
     <div class="skill-group reveal">
-      <div class="skill-group-title">Healthcare Domain</div>
+      <div class="skill-group-title">Data Collection</div>
       <div class="skill-tags">
-        <span class="tag proficient-highlight">Health Data Interpretation</span>
-        <span class="tag proficient-highlight">Evidence Synthesis</span>
-        <span class="tag">Stakeholder Presentation</span>
-        <span class="tag familiar">EHR Data Handling</span>
-        <span class="tag familiar">Healthcare Data Compliance</span>
-        <span class="tag familiar">RCM Concepts</span>
+        <span class="tag">KoboToolbox</span>
+        <span class="tag">GPS Survey</span>
+        <span class="tag">Structured Surveys</span>
+        <span class="tag">Data Validation</span>
+        <span class="tag">Quality Assurance</span>
       </div>
     </div>
-
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-header reveal">
-    <span class="section-num">02</span>
-    <h2 class="section-title">Featured Projects</h2>
-  </div>
-  <div class="projects-grid">
-
-    <div class="project-card reveal">
-      <div class="project-type">AI / ML · Healthcare · IoT</div>
-      <h3 class="project-title">Real-Time Cardiac Health Monitoring with AI & IoT</h3>
-      <p class="project-desc">End-to-end pipeline for continuous cardiac monitoring using IoT sensor data and machine learning. Applies deep learning (CNN) and classical ML for early anomaly detection and patient risk stratification from physiological time-series signals.</p>
-      <div class="project-stack">
-        <span class="tag proficient-highlight">Python</span>
-        <span class="tag">CNN</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag">IoT</span>
-        <span class="tag">Time-series</span>
-        <span class="tag familiar">TensorFlow / Keras</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-badge funded">🏛 Ministry of ICT Funded</span>
-        <div class="project-links">
-          <a href="#publications" class="project-link">Paper under review ↗</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-type">GIS · Disaster Risk · Healthcare Infrastructure</div>
-      <h3 class="project-title">Seismic Vulnerability Assessment of Health Facilities</h3>
-      <p class="project-desc">Multi-metric seismic vulnerability model for health facilities and critical infrastructure in Cox's Bazar district. Integrated structural, functional, and accessibility indicators with GIS spatial analysis — delivered to government and Bangladesh Army CSC stakeholders.</p>
-      <div class="project-stack">
-        <span class="tag proficient-highlight">ArcGIS Pro</span>
-        <span class="tag proficient-highlight">Python</span>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Analysis & GIS</div>
+      <div class="skill-tags">
+        <span class="tag">ArcGIS Pro</span>
+        <span class="tag">QGIS</span>
         <span class="tag">Vulnerability Mapping</span>
-        <span class="tag">Multi-metric Index</span>
-        <span class="tag">SQL</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-badge funded">🏛 Ministry of Housing Funded</span>
-        <div class="project-links">
-          <a href="#publications" class="project-link">Paper under review ↗</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-type">Evidence Synthesis · Clinical AI · Scoping Review</div>
-      <h3 class="project-title">AI for Myocardial Infarction Prediction — Scoping Review</h3>
-      <p class="project-desc">Systematic scoping review of AI and machine learning approaches for myocardial infarction prediction. Synthesised evidence across model architectures, input data types, clinical validation methods, and deployment readiness from peer-reviewed literature.</p>
-      <div class="project-stack">
-        <span class="tag proficient-highlight">Evidence Synthesis</span>
-        <span class="tag proficient-highlight">Scoping Review</span>
-        <span class="tag">Clinical AI</span>
-        <span class="tag">Research Design</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-badge ongoing">Submitted for review</span>
-        <div class="project-links">
-          <a href="#publications" class="project-link">See publication ↗</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="project-type">GIS · Spatial Analysis · Multi-Hazard</div>
-      <h3 class="project-title">Cox's Bazar Multi-Hazard Risk Analysis (District Master Plan)</h3>
-      <p class="project-desc">Integrated spatial risk analysis across earthquake, landslide, cyclone shelter, and water supply vulnerability for the Cox's Bazar District Master Plan 2023–2043. Python-based data pipelines processed 500+ validated data points; findings delivered to national policymakers.</p>
-      <div class="project-stack">
-        <span class="tag proficient-highlight">ArcGIS Pro</span>
-        <span class="tag proficient-highlight">Python</span>
-        <span class="tag proficient-highlight">SQL</span>
-        <span class="tag">Power BI</span>
         <span class="tag">Risk Mapping</span>
-      </div>
-      <div class="project-footer">
-        <span class="project-badge delivered">Delivered · Government</span>
+        <span class="tag">Statistical Analysis</span>
       </div>
     </div>
-
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Programming & Data</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">R</span>
+        <span class="tag">SQL</span>
+        <span class="tag">Microsoft Excel</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-title">Reporting & Communication</div>
+      <div class="skill-tags">
+        <span class="tag">Technical Report Writing</span>
+        <span class="tag">Research Documentation</span>
+        <span class="tag">Evidence-based Planning</span>
+        <span class="tag">Policy Briefs</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="section-header reveal">
-    <span class="section-num">03</span>
+    <span class="section-num">02</span>
     <h2 class="section-title">Experience</h2>
   </div>
   <div class="timeline">
-
     <div class="timeline-item reveal">
       <div class="timeline-period">Mar 2025 – Present</div>
       <div class="timeline-role">Research Associate</div>
       <div class="timeline-org">Daffodil International University — Department of Public Health</div>
-      <div style="margin:0.6rem 0 0.8rem;display:inline-flex;align-items:center;gap:0.5rem;background:#e8f0d8;border:1px solid #b8d090;padding:0.3rem 0.8rem;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;color:#2d5016;">
-        🏛 Funded — Ministry of ICT, Bangladesh
-      </div>
       <ul class="timeline-bullets">
-        <li>Leading AI and IoT-based research for real-time cardiac health monitoring — applying machine learning models for early detection and continuous patient monitoring</li>
-        <li>Research design, data pipeline development, model training, and statistical analysis for healthcare AI outputs</li>
-        <li>Preparing peer-reviewed manuscripts and technical documentation in collaboration with interdisciplinary teams</li>
-        <li>Coordinating with institutional and external stakeholders to ensure timely research delivery</li>
+        <li>Supporting public health research on healthcare data analysis, disease patterns, and health monitoring systems</li>
+        <li>Research design, data collection, cleaning, validation, and dataset preparation for analytical studies</li>
+        <li>Statistical analysis and interpretation of findings for healthcare and public health outputs</li>
+        <li>Technical reports, documentation, and literature summaries in collaboration with interdisciplinary teams</li>
       </ul>
     </div>
-
     <div class="timeline-item reveal">
       <div class="timeline-period">Nov 2024 – Apr 2025</div>
-      <div class="timeline-role">Research Associate — Cox's Bazar District Master Plan (2023–2043)</div>
-      <div class="timeline-org">Cox's Bazar Development Authority (CoxDA) · in collaboration with Bangladesh Army Construction Supervision Consultant (CSC)</div>
-      <div style="margin:0.6rem 0 0.8rem;display:inline-flex;align-items:center;gap:0.5rem;background:#e8f0d8;border:1px solid #b8d090;padding:0.3rem 0.8rem;font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;color:#2d5016;">
-        🏛 Funded — Ministry of Housing & Public Works, Bangladesh
-      </div>
+      <div class="timeline-role">Research Associate</div>
+      <div class="timeline-org">Cox's Bazar Development Authority (CoxDA) — Cox's Bazar Masterplan Project</div>
       <ul class="timeline-bullets">
-        <li>Conducted qualitative field surveys (KIIs, FGDs) across Cox's Bazar district covering high-risk communities, infrastructure, and disaster-prone zones</li>
-        <li>Mapped and delivered <strong>Earthquake Vulnerability Report</strong> for health facilities and critical infrastructure using ArcGIS Pro — presented to government and development stakeholders including Bangladesh Army CSE</li>
-        <li>Mapped and delivered <strong>Landslide Vulnerability Report</strong> covering terrain risk zones across Cox's Bazar district</li>
-        <li>Assessed cyclone shelter vulnerability — structural adequacy, accessibility, and community coverage gaps</li>
-        <li>Assessed water supply vulnerability — coverage, reliability, and disaster resilience of WASH systems</li>
-        <li>Executed complex SQL queries and used Python for data cleaning, transformation, and analysis</li>
-        <li>Created data visualisations with Power BI and Tableau to communicate key insights to policymakers and stakeholders</li>
-        <li>Ensured data validation and quality assurance across 500+ data points, improving dataset reliability for environmental health studies</li>
-        <li>Integrated multi-hazard spatial datasets into the comprehensive Cox's Bazar District Master Plan (2023–2043)</li>
+        <li>Field assessments of WASH infrastructure, cyclone shelters, and disaster-affected communities using KIIs and FGDs</li>
+        <li>Data collection, validation, and analysis for environmental health and disaster resilience planning</li>
+        <li>Vulnerability assessment and risk mapping using GIS to support emergency response strategies</li>
+        <li>Coordinated with government officials, NGO partners, and research teams during field operations</li>
+        <li>Stakeholder presentation of earthquake and landslide vulnerability analysis findings</li>
       </ul>
     </div>
-
     <div class="timeline-item reveal">
       <div class="timeline-period">Dec 2022 – Aug 2024</div>
       <div class="timeline-role">Lecturer</div>
       <div class="timeline-org">Mymensingh Engineering College — Department of Civil Engineering</div>
       <ul class="timeline-bullets">
-        <li>Delivered applied engineering instruction with emphasis on practical fieldwork and analytical problem-solving</li>
-        <li>Supervised and managed <strong>Surveying Laboratory</strong> — hands-on instruction in topographic and field surveying techniques</li>
-        <li>Supervised and managed <strong>Fluid Mechanics Laboratory</strong> — experimental analysis of fluid behaviour and hydraulic systems</li>
-        <li>Supervised student projects on infrastructure, water systems, and sustainability topics</li>
-        <li>Coordinated academic activities and maintained structured documentation and reporting</li>
+        <li>Delivered applied instruction in engineering subjects with emphasis on fieldwork and analytical problem-solving</li>
+        <li>Supervised student projects on infrastructure, water systems, and sustainability</li>
+        <li>Coordinated academic activities and maintained structured documentation</li>
       </ul>
     </div>
-
     <div class="timeline-item reveal">
       <div class="timeline-period">Jun 2022 – Nov 2022</div>
       <div class="timeline-role">Assistant Engineer</div>
@@ -974,14 +702,13 @@
         <li>Prepared technical reports and progress updates for management</li>
       </ul>
     </div>
-
   </div>
 </section>
 
 <!-- PUBLICATIONS -->
 <section id="publications">
   <div class="section-header reveal">
-    <span class="section-num">04</span>
+    <span class="section-num">03</span>
     <h2 class="section-title">Research & Publications</h2>
   </div>
   <div class="pub-list">
@@ -996,7 +723,7 @@
       <div class="pub-status">Published</div>
       <div>
         <div class="pub-title">Seasonal and spatial distribution of heavy metals in an industrially affected river — ecological risk, health risk & pollution source</div>
-        <div class="pub-meta">Jolly, Y. et al. [incl. Bhuiyan, T.J.] · Scopus-indexed Journal · 2023 · <em>Published (Preprint previously available)</em></div>
+        <div class="pub-meta">Jolly, Y. et al. [incl. Bhuiyan, T.J.] · Scopus-indexed · 2023</div>
       </div>
     </div>
     <div class="pub-card reveal">
@@ -1033,7 +760,7 @@
 <!-- EDUCATION -->
 <section id="education">
   <div class="section-header reveal">
-    <span class="section-num">05</span>
+    <span class="section-num">04</span>
     <h2 class="section-title">Education</h2>
   </div>
   <div class="edu-grid">
@@ -1052,18 +779,16 @@
       <div class="edu-inst">Notre Dame College, Dhaka</div>
       <div class="edu-year">2013</div>
     </div>
-    <div class="edu-card reveal" data-year="IEB">
-      <div class="edu-degree">Institute of Engineers Bangladesh</div>
-      <div class="edu-inst">Professional Membership</div>
-      <div class="edu-year">Membership No: M-44942</div>
-    </div>
   </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact" class="contact-section">
   <div class="section-header reveal">
-    <span class="section-num">06</span>
+    <span class="section-num">05</span>
     <h2 class="section-title">Contact</h2>
   </div>
-  <p class="contact-desc reveal">Open to full-time roles as a Data Scientist, AI Researcher, or ML Engineer in healthcare and biomedical domains — as well as research collaborations and consulting engagements. Based in Bangladesh; open to remote and international opportunities.</p>
+  <p class="contact-desc reveal">Open to research collaborations, consulting engagements, and full-time opportunities in public health, development research, and data analysis.</p>
   <div class="contact-links reveal">
     <a href="https://linkedin.com/in/YOUR-LINKEDIN" class="contact-link" target="_blank">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
@@ -1080,10 +805,6 @@
     <a href="https://github.com/YOUR-GITHUB" class="contact-link" target="_blank">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
       GitHub
-    </a>
-    <a href="https://scholar.google.com/citations?user=YOUR-SCHOLAR-ID" class="contact-link" target="_blank">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z"/></svg>
-      Google Scholar
     </a>
   </div>
 </section>
