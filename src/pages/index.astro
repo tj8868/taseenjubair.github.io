@@ -1,8 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
-import { profile, about, stats, skills, contact } from "../data/site";
+import { stats, skills, contact } from "../data/site";
+import { getSite } from "../lib/cms";
 import { url } from "../lib/url";
+
+const { profile, about, education } = await getSite();
 ---
 
 <BaseLayout title="About" description={about.lead}>
@@ -70,6 +73,27 @@ import { url } from "../lib/url";
     </h3>
     <ul class="mt-4 flex flex-wrap gap-2">
       {about.interests.map((i) => <li class="chip">{i}</li>)}
+    </ul>
+  </section>
+
+  <!-- Education -->
+  <section class="mt-14">
+    <h3 class="text-xl font-semibold tracking-tight text-[var(--fg-strong)]">Education</h3>
+    <ul class="mt-5 flex flex-col gap-4">
+      {
+        education.map((e) => (
+          <li class="panel p-5 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-5">
+            <p class="eyebrow shrink-0 sm:w-36 sm:pt-0.5">{e.year}</p>
+            <div class="min-w-0">
+              <h4 class="text-base font-semibold leading-snug text-[var(--fg-strong)]">
+                {e.degree}
+              </h4>
+              <p class="mt-1 text-sm text-[var(--muted)]">{e.school}</p>
+              {e.note && <p class="mt-1 text-xs text-[var(--muted)]">{e.note}</p>}
+            </div>
+          </li>
+        ))
+      }
     </ul>
   </section>
 

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{% block title %}Admin{% endblock %} · Portfolio CMS</title>
+    <link rel="stylesheet" href="/back/static/admin.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/back">Portfolio&nbsp;CMS</a>
+      <nav class="topnav">
+        <a href="/back" class="{{ 'on' if active == 'dashboard' }}">Dashboard</a>
+        <a href="/back/profile" class="{{ 'on' if active == 'profile' }}">Profile</a>
+        <a href="/back/about" class="{{ 'on' if active == 'about' }}">About</a>
+        <a href="/back/education" class="{{ 'on' if active == 'education' }}">Education</a>
+        <a href="/back/content" class="{{ 'on' if active == 'content' }}">Content</a>
+        <a href="/back/account" class="{{ 'on' if active == 'account' }}">Account</a>
+      </nav>
+      <form method="post" action="/back/logout" class="logout">
+        <input type="hidden" name="csrf" value="{{ csrf }}" />
+        <span class="who">{{ admin.username }}</span>
+        <button type="submit" class="btn ghost">Log out</button>
+      </form>
+    </header>
+
+    <main class="shell">
+      {% if flash %}<p class="notice ok">{{ flash }}</p>{% endif %}
+      {% if error %}<p class="notice bad">{{ error }}</p>{% endif %}
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>

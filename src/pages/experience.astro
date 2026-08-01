@@ -1,6 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { experience, education } from "../data/site";
+import { experience } from "../data/site";
+import { getSite } from "../lib/cms";
+
+const { education } = await getSite();
 
 const description =
   "Research, teaching, and engineering roles across public health, disaster resilience, and infrastructure in Bangladesh.";

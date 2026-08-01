@@ -8,7 +8,7 @@ export const profile = {
   name: "H M Taseen Jubair Bhuiyan",
   shortName: "T. J. Bhuiyan",
   // The eyebrow line above the hero heading.
-  kicker: "Public Health · Data · Research",
+  kicker: "Public Health · Data Science · Artificial Intelligence · Research",
   // Shown under the name in the sidebar. Keep to ~10 words.
   role: "Public Health & Development Research",
   location: "Dhaka, Bangladesh", // TODO confirm
@@ -36,14 +36,15 @@ export const socials = [
 
 export const nav = [
   { label: "About", href: "/" },
+  { label: "Content", href: "/content/" },
   { label: "Publications", href: "/publications/" },
   { label: "Experience", href: "/experience/" },
   { label: "CV", href: "/cv/" },
 ];
 
 export const stats = [
-  { value: "3+", label: "Published research papers", note: "incl. Elsevier & Scopus-indexed" },
-  { value: "3", label: "Works currently under review" },
+  { value: "2", label: "Peer-reviewed publications", note: "incl. Elsevier & Scopus-indexed" },
+  { value: "3", label: "Works under review or in preparation", note: "2 under review, 1 in preparation" },
   { value: "4+", label: "Years field & research experience" },
   { value: "2", label: "Active research roles", note: "2026" },
 ];
@@ -186,7 +187,9 @@ export const experience = [
   },
 ];
 
-export type PubStatus = "published" | "review" | "prep";
+// Kept deliberately separate. A preprint is NOT peer reviewed, so it must never
+// be grouped under "published" or counted in the peer-reviewed total.
+export type PubStatus = "published" | "preprint" | "review" | "prep";
 
 export const publications: {
   status: PubStatus;
@@ -208,14 +211,16 @@ export const publications: {
     href: undefined, // TODO add DOI link
   },
   {
-    status: "published",
+    status: "preprint",
     title:
       "Seasonal and spatial distribution of heavy metals in an industrially affected river: ecological risk, health risk & pollution source",
     authors: "Jolly, Y. et al. [incl. Bhuiyan, T.J.]",
-    venue: "Scopus-indexed",
+    // TODO name the preprint server, e.g. "Research Square" / "SSRN" / "medRxiv".
+    // Do not claim indexing or a journal here unless it is formally published.
+    venue: "Preprint",
     year: "2023",
     tags: ["Ecological Risk", "Health Risk", "Water Quality"],
-    href: undefined, // TODO add DOI link
+    href: undefined, // TODO add preprint DOI link
   },
   {
     status: "published",
@@ -254,7 +259,8 @@ export const publications: {
 ];
 
 export const statusLabels: Record<PubStatus, string> = {
-  published: "Published",
+  published: "Peer-reviewed",
+  preprint: "Preprint (not peer reviewed)",
   review: "Under review",
   prep: "In preparation",
 };

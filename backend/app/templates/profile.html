@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<h1>Profile</h1>
+<p class="sub">Your name, role, and the identity block in the sidebar.</p>
+
+<form method="post" action="/back/profile" class="card">
+  <input type="hidden" name="csrf" value="{{ csrf }}" />
+
+  <div class="grid2">
+    <div>
+      <label for="name">Full name</label>
+      <input id="name" name="name" value="{{ profile.name }}" required />
+    </div>
+    <div>
+      <label for="short_name">Short name</label>
+      <input id="short_name" name="short_name" value="{{ profile.short_name }}" />
+      <p class="hint">Used in the footer copyright line.</p>
+    </div>
+  </div>
+
+  <label for="kicker">Kicker</label>
+  <input id="kicker" name="kicker" value="{{ profile.kicker }}" />
+  <p class="hint">The small line above the page heading.</p>
+
+  <div class="grid2">
+    <div>
+      <label for="role">Role</label>
+      <input id="role" name="role" value="{{ profile.role }}" />
+    </div>
+    <div>
+      <label for="location">Location</label>
+      <input id="location" name="location" value="{{ profile.location }}" />
+    </div>
+  </div>
+
+  <label for="bio">Sidebar bio</label>
+  <textarea id="bio" name="bio" style="min-height: 90px">{{ profile.bio }}</textarea>
+
+  <label for="about_lead">About page lead paragraph</label>
+  <textarea id="about_lead" name="about_lead" style="min-height: 90px">{{ profile.about_lead }}</textarea>
+
+  <div class="grid2">
+    <div>
+      <label for="photo">Photo path</label>
+      <input id="photo" name="photo" value="{{ profile.photo }}" placeholder="assets/taseen.jpg" />
+      <p class="hint">Relative to <code>public/</code>. Leave blank to show your initials.</p>
+    </div>
+    <div>
+      <label for="resume">CV / resume path</label>
+      <input id="resume" name="resume" value="{{ profile.resume }}" placeholder="assets/cv.pdf" />
+      <p class="hint">Leave blank to hide the download button.</p>
+    </div>
+  </div>
+
+  <label for="photo_alt">Photo alt text</label>
+  <input id="photo_alt" name="photo_alt" value="{{ profile.photo_alt }}" />
+
+  <div class="actions">
+    <button type="submit" class="btn primary">Save profile</button>
+  </div>
+</form>
+{% endblock %}

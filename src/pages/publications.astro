@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import { publications, statusLabels, type PubStatus } from "../data/site";
 
-const order: PubStatus[] = ["published", "review", "prep"];
+const order: PubStatus[] = ["published", "preprint", "review", "prep"];
 const grouped = order
   .map((status) => ({
     status,

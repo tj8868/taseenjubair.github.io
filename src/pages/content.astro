@@ -1,0 +1,317 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import { getSite } from "../lib/cms";
+import type { ContentItem } from "../lib/cms";
+
+const site = await getSite();
+const items = site.content;
+
+const featured = items.filter((i) => i.featured);
+const rest = items.filter((i) => !i.featured);
+
+// One filter chip per platform actually present, so the row never shows an
+// empty category.
+const platforms = [...new Map(items.map((i) => [i.platform, i.platformLabel])).entries()];
+
+const iconFor: Record<string, string> = {
+  youtube: "youtube",
+  linkedin: "linkedin",
+  article: "article",
+  talk: "mic",
+  other: "external",
+};
+
+const description =
+  "Videos, posts, articles, and talks by H M Taseen Jubair Bhuiyan on public health, data science, and research.";
+
+function thumbOf(item: ContentItem): string | null {
+  return item.thumbnail ?? (item.videoId ? `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg` : null);
+}
+---
+
+<BaseLayout title="Content" description={description}>
+  <section>
+    <p class="eyebrow">Videos · Posts · Talks</p>
+    <h2
+      class="mt-3 text-3xl sm:text-4xl xl:text-5xl font-semibold tracking-tight text-[var(--fg-strong)] text-balance"
+    >
+      Content
+    </h2>
+    <p class="mt-5 text-lg leading-relaxed text-[var(--muted)] max-w-[68ch]">
+      Work published outside the journals: explainer videos, field notes, and talks on public
+      health, WASH, and applied data science.
+    </p>
+  </section>
+
+  {
+    items.length === 0 ? (
+      <section class="mt-12">
+        <div class="panel p-8 text-center">
+          <p class="text-[var(--fg-strong)] font-medium">Nothing published here yet.</p>
+          <p class="mt-2 text-sm text-[var(--muted)]">
+            Videos and posts added in the admin panel will appear on this page after the next
+            build.
+          </p>
+        </div>
+      </section>
+    ) : (
+      <>
+        {platforms.length > 1 && (
+          <section class="mt-10">
+            <ul class="flex flex-wrap gap-2" role="list">
+              <li>
+                <button
+                  type="button"
+                  class="chip filter-chip is-on"
+                  data-filter="all"
+                  aria-pressed="true"
+                >
+                  All
+                </button>
+              </li>
+              {platforms.map(([value, label]) => (
+                <li>
+                  <button
+                    type="button"
+                    class="chip filter-chip"
+                    data-filter={value}
+                    aria-pressed="false"
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {featured.length > 0 && (
+          <section class="mt-10">
+            <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+              Featured
+            </h3>
+            <div class="mt-5 grid gap-5 lg:grid-cols-2">
+              {featured.map((item) => (
+                <article class="card overflow-hidden flex flex-col" data-platform={item.platform}>
+                  {item.videoId ? (
+                    <div
+                      class="video-embed relative aspect-video bg-[var(--surface)] cursor-pointer group"
+                      data-video={item.videoId}
+                      data-title={item.title}
+                    >
+                      <img
+                        src={`https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        class="size-full object-cover"
+                      />
+                      <button
+                        type="button"
+                        class="absolute inset-0 grid place-items-center bg-black/25 group-hover:bg-black/10 transition-colors"
+                        aria-label={`Play: ${item.title}`}
+                      >
+                        <span class="grid place-items-center size-16 rounded-full bg-[var(--accent)] text-[var(--accent-contrast)] shadow-lg">
+                          <Icon name="play" size={30} />
+                        </span>
+                      </button>
+                    </div>
+                  ) : (
+                    thumbOf(item) && (
+                      <img
+                        src={thumbOf(item)}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        class="aspect-video w-full object-cover"
+                      />
+                    )
+                  )}
+
+                  <div class="p-5 flex flex-col flex-1">
+                    <p class="eyebrow flex items-center gap-1.5">
+                      <Icon name={iconFor[item.platform] ?? "external"} size={13} />
+                      {item.platformLabel}
+                      {item.publishedAt && ` · ${item.publishedAt}`}
+                    </p>
+                    <h4 class="mt-2 text-lg font-semibold leading-snug text-[var(--fg-strong)]">
+                      {item.title}
+                    </h4>
+                    {item.description && (
+                      <p class="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+                        {item.description}
+                      </p>
+                    )}
+                    {item.tags.length > 0 && (
+                      <ul class="mt-4 flex flex-wrap gap-2">
+                        {item.tags.map((t) => (
+                          <li class="chip">{t}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="link-underline mt-4 inline-flex items-center gap-1.5 text-sm font-medium self-start"
+                      >
+                        Watch on {item.platformLabel}
+                        <Icon name="external" size={13} />
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {rest.length > 0 && (
+          <section class="mt-12">
+            {featured.length > 0 && (
+              <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+                More
+              </h3>
+            )}
+            <div class="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {rest.map((item) => (
+                <article class="card overflow-hidden flex flex-col" data-platform={item.platform}>
+                  {item.videoId ? (
+                    <div
+                      class="video-embed relative aspect-video bg-[var(--surface)] cursor-pointer group"
+                      data-video={item.videoId}
+                      data-title={item.title}
+                    >
+                      <img
+                        src={`https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        class="size-full object-cover"
+                      />
+                      <button
+                        type="button"
+                        class="absolute inset-0 grid place-items-center bg-black/25 group-hover:bg-black/10 transition-colors"
+                        aria-label={`Play: ${item.title}`}
+                      >
+                        <span class="grid place-items-center size-12 rounded-full bg-[var(--accent)] text-[var(--accent-contrast)] shadow-lg">
+                          <Icon name="play" size={22} />
+                        </span>
+                      </button>
+                    </div>
+                  ) : (
+                    thumbOf(item) && (
+                      <img
+                        src={thumbOf(item)}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        class="aspect-video w-full object-cover"
+                      />
+                    )
+                  )}
+
+                  <div class="p-5 flex flex-col flex-1">
+                    <p class="eyebrow flex items-center gap-1.5">
+                      <Icon name={iconFor[item.platform] ?? "external"} size={13} />
+                      {item.platformLabel}
+                      {item.publishedAt && ` · ${item.publishedAt}`}
+                    </p>
+                    <h4 class="mt-2 text-base font-semibold leading-snug text-[var(--fg-strong)]">
+                      {item.title}
+                    </h4>
+                    {item.description && (
+                      <p class="mt-2 text-sm leading-relaxed text-[var(--muted)] line-clamp-4">
+                        {item.description}
+                      </p>
+                    )}
+                    {item.tags.length > 0 && (
+                      <ul class="mt-4 flex flex-wrap gap-2">
+                        {item.tags.map((t) => (
+                          <li class="chip">{t}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="link-underline mt-4 inline-flex items-center gap-1.5 text-sm font-medium self-start"
+                      >
+                        View
+                        <Icon name="external" size={13} />
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+      </>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .filter-chip {
+    cursor: pointer;
+  }
+
+  .filter-chip.is-on {
+    color: var(--accent);
+    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    background: color-mix(in oklab, var(--accent) 12%, transparent);
+  }
+
+  .line-clamp-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  // ── Click-to-load YouTube ───────────────────────────────────────────────────
+  // The thumbnail ships in the HTML; the iframe (and everything it loads) only
+  // arrives once someone actually asks to watch.
+  document.querySelectorAll<HTMLElement>(".video-embed").forEach((box) => {
+    box.addEventListener("click", () => {
+      const id = box.dataset.video;
+      if (!id) return;
+      const frame = document.createElement("iframe");
+      frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      frame.title = box.dataset.title ?? "YouTube video";
+      frame.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      frame.allowFullscreen = true;
+      frame.className = "absolute inset-0 size-full border-0";
+      box.replaceChildren(frame);
+      box.classList.remove("cursor-pointer", "group");
+    });
+  });
+
+  // ── Platform filter ─────────────────────────────────────────────────────────
+  const chips = document.querySelectorAll<HTMLButtonElement>(".filter-chip");
+  const cards = document.querySelectorAll<HTMLElement>("[data-platform]");
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const wanted = chip.dataset.filter ?? "all";
+
+      chips.forEach((c) => {
+        const on = c === chip;
+        c.classList.toggle("is-on", on);
+        c.setAttribute("aria-pressed", String(on));
+      });
+
+      cards.forEach((card) => {
+        card.hidden = wanted !== "all" && card.dataset.platform !== wanted;
+      });
+    });
+  });
+</script>

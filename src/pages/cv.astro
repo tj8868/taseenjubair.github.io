@@ -1,17 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
-import {
-  profile,
-  about,
-  experience,
-  education,
-  skills,
-  publications,
-  statusLabels,
-  socials,
-} from "../data/site";
+import { experience, skills, publications, statusLabels, socials } from "../data/site";
+import { getSite } from "../lib/cms";
 import { url } from "../lib/url";
+
+const { profile, about, education } = await getSite();
 
 const description = `Curriculum vitae of ${profile.name}: public health and development research.`;
 ---

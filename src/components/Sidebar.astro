@@ -1,7 +1,10 @@
 ---
 import Icon from "./Icon.astro";
-import { profile, socials } from "../data/site";
+import { socials } from "../data/site";
+import { getSite } from "../lib/cms";
 import { url } from "../lib/url";
+
+const { profile } = await getSite();
 
 const initials = profile.name
   .split(" ")

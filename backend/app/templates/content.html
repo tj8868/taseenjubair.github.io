@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block title %}Content{% endblock %}
+
+{% macro fields(prefix, r=None, platforms=[], count=0) %}
+  <div class="grid2">
+    <div>
+      <label for="{{ prefix }}-platform">Platform</label>
+      <select id="{{ prefix }}-platform" name="platform">
+        {% for value, label in platforms %}
+        <option value="{{ value }}" {% if r and r.platform == value %}selected{% endif %}>
+          {{ label }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label for="{{ prefix }}-published-at">Published</label>
+      <input
+        id="{{ prefix }}-published-at"
+        name="published_at"
+        value="{{ r.published_at if r else '' }}"
+        placeholder="Mar 2026"
+      />
+    </div>
+  </div>
+
+  <label for="{{ prefix }}-title">Title</label>
+  <input id="{{ prefix }}-title" name="title" value="{{ r.title if r else '' }}" required />
+
+  <label for="{{ prefix }}-url">Link</label>
+  <input
+    id="{{ prefix }}-url"
+    name="url"
+    value="{{ r.url if r else '' }}"
+    placeholder="https://www.youtube.com/watch?v=..."
+  />
+  <p class="hint">
+    For YouTube, paste any watch, share, or Shorts link. The video id and thumbnail are
+    worked out for you.
+  </p>
+
+  <label for="{{ prefix }}-description">Description</label>
+  <textarea id="{{ prefix }}-description" name="description" style="min-height: 90px">{{ r.description if r else '' }}</textarea>
+
+  <div class="grid2">
+    <div>
+      <label for="{{ prefix }}-tags">Tags</label>
+      <input
+        id="{{ prefix }}-tags"
+        name="tags"
+        value="{{ r.tags if r else '' }}"
+        placeholder="Public Health, GIS"
+      />
+      <p class="hint">Comma separated.</p>
+    </div>
+    <div>
+      <label for="{{ prefix }}-order">Sort order</label>
+      <input
+        id="{{ prefix }}-order"
+        name="sort_order"
+        type="number"
+        value="{{ r.sort_order if r else count }}"
+      />
+    </div>
+  </div>
+
+  <label for="{{ prefix }}-thumbnail">Custom thumbnail URL</label>
+  <input id="{{ prefix }}-thumbnail" name="thumbnail" value="{{ r.thumbnail if r else '' }}" />
+  <p class="hint">Optional. Required for non-YouTube items that should show an image.</p>
+
+  <div class="checks">
+    <label class="check">
+      <input
+        type="checkbox"
+        name="is_published"
+        value="true"
+        {% if r is none or r.is_published %}checked{% endif %}
+      />
+      Visible on the site
+    </label>
+    <label class="check">
+      <input
+        type="checkbox"
+        name="featured"
+        value="true"
+        {% if r and r.featured %}checked{% endif %}
+      />
+      Feature at the top
+    </label>
+  </div>
+{% endmacro %}
+
+{% block content %}
+<h1>Content</h1>
+<p class="sub">
+  Everything you publish elsewhere: YouTube videos, LinkedIn posts, articles, and talks,
+  collected on the site's Content page.
+</p>
+
+<details class="card" {% if not rows %}open{% endif %}>
+  <summary>Add new content</summary>
+  <form method="post" action="/back/content">
+    <input type="hidden" name="csrf" value="{{ csrf }}" />
+    {{ fields("new", none, platforms, rows|length) }}
+    <div class="actions">
+      <button type="submit" class="btn primary">Add content</button>
+    </div>
+  </form>
+</details>
+
+{% for r in rows %}
+<form method="post" action="/back/content/{{ r.id }}" class="card">
+  <input type="hidden" name="csrf" value="{{ csrf }}" />
+
+  <div class="row-head">
+    {% if r.video_id or r.thumbnail %}
+    <img
+      class="thumb"
+      src="{{ r.thumbnail or 'https://i.ytimg.com/vi/' ~ r.video_id ~ '/hqdefault.jpg' }}"
+      alt=""
+    />
+    {% endif %}
+    <strong>{{ r.title }}</strong>
+    <span class="badge">{{ r.platform }}</span>
+    {% if r.featured %}<span class="badge on">featured</span>{% endif %}
+    <span class="badge {{ 'on' if r.is_published else 'off' }}">
+      {{ 'live' if r.is_published else 'hidden' }}
+    </span>
+  </div>
+
+  <details>
+    <summary>Edit</summary>
+    {{ fields("i" ~ r.id, r, platforms) }}
+    <div class="actions">
+      <button type="submit" class="btn primary">Save</button>
+      {% if r.url %}
+      <a class="btn ghost" href="{{ r.url }}" target="_blank" rel="noopener">Open link</a>
+      {% endif %}
+      <button
+        type="submit"
+        class="btn danger"
+        formaction="/back/content/{{ r.id }}/delete"
+        onclick="return confirm('Delete &quot;{{ r.title }}&quot;?')"
+      >
+        Delete
+      </button>
+    </div>
+  </details>
+</form>
+{% else %}
+<p class="sub">Nothing published yet.</p>
+{% endfor %}
+{% endblock %}

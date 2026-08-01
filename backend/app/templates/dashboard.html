@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<p class="sub">Edit content here, then rebuild the site to publish the changes.</p>
+
+<div class="stats">
+  <div class="stat"><b>{{ counts.about }}</b><span>About sections</span></div>
+  <div class="stat"><b>{{ counts.interests }}</b><span>Research interests</span></div>
+  <div class="stat"><b>{{ counts.education }}</b><span>Qualifications</span></div>
+  <div class="stat">
+    <b>{{ counts.published }}/{{ counts.content }}</b><span>Content items live</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Publishing your edits</h2>
+  <p class="sub" style="margin-bottom: 0.75rem">
+    The public site is static. Changes here land on the live site after the next build.
+  </p>
+  <ol style="color: var(--muted); font-size: 0.9rem; padding-left: 1.2rem; margin: 0">
+    <li>Make your edits on the pages above.</li>
+    <li>Leave this server running.</li>
+    <li>
+      In the project folder run <code>npm run build</code>, then commit and push
+      the site as usual.
+    </li>
+  </ol>
+</div>
+
+<div class="card">
+  <h2>API</h2>
+  <p class="sub" style="margin-bottom: 0.75rem">
+    The build reads from these endpoints. Handy for checking what will ship.
+  </p>
+  <p style="margin: 0; font-size: 0.9rem">
+    <a href="/api/site" target="_blank" rel="noopener">/api/site</a> ·
+    <a href="/api/about" target="_blank" rel="noopener">/api/about</a> ·
+    <a href="/api/education" target="_blank" rel="noopener">/api/education</a> ·
+    <a href="/api/content" target="_blank" rel="noopener">/api/content</a> ·
+    <a href="/docs" target="_blank" rel="noopener">interactive docs</a>
+  </p>
+</div>
+{% endblock %}

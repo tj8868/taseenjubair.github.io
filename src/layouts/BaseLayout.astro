@@ -3,8 +3,11 @@ import "@fontsource-variable/inter";
 import "../styles/global.css";
 import Sidebar from "../components/Sidebar.astro";
 import Nav from "../components/Nav.astro";
-import { profile, socials } from "../data/site";
+import { socials } from "../data/site";
+import { getSite } from "../lib/cms";
 import { url } from "../lib/url";
+
+const { profile } = await getSite();
 
 interface Props {
   title: string;
