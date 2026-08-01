@@ -27,11 +27,24 @@ for the full detail.
 
 ---
 
+## Project layout
+
+```
+frontend/   the Astro site. This is what gets deployed.
+backend/    FastAPI content editor. Runs locally, never deployed.
+```
+
+Every `npm` command below runs inside `frontend/`. Either `cd frontend` first, or use
+`npm --prefix frontend run <script>` from the repository root.
+
+---
+
 ## Quick start
 
 You need [Node.js](https://nodejs.org) 20 or newer. Check with `node --version`.
 
 ```bash
+cd frontend
 npm install
 npm run dev
 ```
@@ -54,6 +67,10 @@ Press `Ctrl + C` in the terminal to stop the dev server.
 ---
 
 ## What each file does
+
+Paths in this section are relative to **`frontend/`** unless they start with `backend/`
+or are marked as repository root. So `src/data/site.ts` means
+`frontend/src/data/site.ts`.
 
 ### Where the content lives
 
@@ -115,10 +132,10 @@ or alter how something is displayed.
 | `public/` | Anything here is copied to the site as-is, with no processing. **Your photo and CV PDF go in `public/assets/`.** |
 | `public/favicon.svg` | The little icon in the browser tab. |
 | `public/.nojekyll` | Empty file that stops GitHub Pages from mangling folders beginning with `_`. Required, do not delete. |
-| `.github/workflows/deploy.yml` | Builds and publishes the site automatically whenever you push to `main`. |
-| `.gitignore` | Lists files git should ignore, e.g. `node_modules/` and `dist/`. |
+| `.github/workflows/deploy.yml` | Repository root. Builds `frontend/` and publishes to GitHub Pages on every push to `main`. |
+| `.gitignore` | Repository root. Lists files git should ignore, e.g. `node_modules/` and `dist/`. |
 | `.env.example` | Template for `PUBLIC_CMS_URL`. Only needed if the backend is not on its default address. |
-| `backend/` | The content backend and admin panel. Not deployed, runs locally. See [`backend/README.md`](backend/README.md). |
+| `backend/` | Repository root. The content backend and admin panel. Not deployed, runs locally. See [`backend/README.md`](backend/README.md). |
 
 ### Folders that appear on their own
 
@@ -305,7 +322,7 @@ a draft out of the build without deleting it.
 The site is static, so edits appear after the next build. With the backend running:
 
 ```bash
-npm run build
+npm --prefix frontend run build
 ```
 
 That fetches the content and writes `src/data/cms-snapshot.json`. Commit and push as
@@ -401,8 +418,8 @@ check the terminal says `content loaded from http://127.0.0.1:8000 and snapshott
 it says `using cms-snapshot.json` instead, the backend was not running.
 
 **Pushed changes went live but the admin content reverted**
-`src/data/cms-snapshot.json` was not committed. Run `npm run build` with the backend
-running, then `git add src/data/cms-snapshot.json` and push again.
+The snapshot was not committed. Run the build with the backend running, then
+`git add frontend/src/data/cms-snapshot.json` and push again.
 
 **`run.ps1` says python is not recognised**
 Python is not installed, or was installed without "Add python.exe to PATH". Reinstall

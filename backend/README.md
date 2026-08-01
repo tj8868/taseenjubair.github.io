@@ -43,25 +43,27 @@ copy .env.example .env
 The site is static, so edits go live on the next build:
 
 ```bash
-npm run build
+npm --prefix frontend run build
 ```
 
 The build reads `PUBLIC_CMS_URL` (default `http://127.0.0.1:8000`) and, on success, saves
-what it got to `src/data/cms-snapshot.json`. **Commit that file.** The GitHub Actions
-runner cannot reach a backend on your laptop, so the snapshot is what it deploys from.
+what it got to `frontend/src/data/cms-snapshot.json`. **Commit that file.** The GitHub
+Actions runner cannot reach a backend on your laptop, so the snapshot is what it deploys
+from.
 
-So the full publish loop is:
+So the full publish loop is, from the repository root:
 
 ```powershell
-.\backend\run.ps1          # in one terminal, leave it running
-npm run build              # in another: fetches content and writes the snapshot
+.\backend\run.ps1                   # one terminal, leave it running
+npm --prefix frontend run build     # another: fetches content, writes the snapshot
 git add -A
 git commit -m "Update content"
 git push
 ```
 
 If the backend is not running, the build does not fail. It uses the last snapshot, or
-`src/data/site.ts` if there is no snapshot yet, and says which one it picked in the log.
+`frontend/src/data/site.ts` if there is no snapshot yet, and says which one it picked in
+the log.
 
 ## What the panel manages
 

@@ -17,17 +17,23 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # The site now lives in frontend/. backend/ is never deployed: it is a local
+    # content editor, and the build reads its output from src/data/cms-snapshot.json.
+    defaults:
+      run:
+        working-directory: frontend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: frontend/package-lock.json
       - run: npm ci
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: frontend/dist
 
   deploy:
     needs: build
