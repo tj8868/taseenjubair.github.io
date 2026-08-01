@@ -1,0 +1,93 @@
+---
+import Icon from "./Icon.astro";
+import { profile, socials } from "../data/site";
+import { url } from "../lib/url";
+
+const initials = profile.name
+  .split(" ")
+  .filter((w) => w.length > 1)
+  .slice(-2)
+  .map((w) => w[0])
+  .join("");
+---
+
+<aside
+  class="lg:sticky lg:top-0 lg:h-screen lg:w-[var(--sidebar)] shrink-0 flex flex-col lg:justify-center gap-6 px-6 py-8 lg:py-10 border-b lg:border-b-0 lg:border-r border-[var(--border)]"
+>
+  <div
+    class="flex flex-row lg:flex-col items-center lg:text-center gap-5 lg:gap-4 max-w-[var(--shell)] mx-auto w-full"
+  >
+    {
+      profile.photo ? (
+        <img
+          src={url(profile.photo)}
+          alt={profile.photoAlt}
+          width="176"
+          height="176"
+          decoding="async"
+          fetchpriority="high"
+          class="size-20 lg:size-44 rounded-full object-cover border border-[var(--border)] shadow-[0_0_0_6px_var(--glow)]"
+        />
+      ) : (
+        <div
+          aria-hidden="true"
+          class="size-20 lg:size-44 rounded-full grid place-items-center border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)] font-semibold text-2xl lg:text-5xl tracking-tight shadow-[0_0_0_6px_var(--glow)]"
+        >
+          {initials}
+        </div>
+      )
+    }
+
+    <div class="flex flex-col items-start lg:items-center min-w-0">
+      <h1
+        class="text-lg lg:text-xl font-semibold tracking-tight text-[var(--fg-strong)] leading-snug"
+      >
+        {profile.name}
+      </h1>
+
+      <p class="mt-1 text-sm text-[var(--accent)] font-medium">{profile.role}</p>
+
+      <p class="mt-2 flex items-center gap-1.5 text-xs text-[var(--muted)]">
+        <Icon name="pin" size={13} />
+        {profile.location}
+      </p>
+
+      <p
+        class="mt-4 text-sm leading-relaxed text-[var(--muted)] hidden lg:block text-balance"
+      >
+        {profile.bio}
+      </p>
+
+      <ul class="mt-4 lg:mt-5 flex items-center gap-1.5">
+        {
+          socials.map((s) => (
+            <li>
+              <a
+                href={s.href}
+                target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                title={s.label}
+                class="grid place-items-center size-11 lg:size-9 rounded-lg border border-[var(--border)] text-[var(--muted)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+              >
+                <Icon name={s.icon} size={17} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        profile.resume && (
+          <a
+            href={url(profile.resume)}
+            class="btn-primary no-print mt-5 hidden lg:inline-flex"
+          >
+            <Icon name="download" size={15} />
+            Download CV
+          </a>
+        )
+      }
+    </div>
+  </div>
+</aside>

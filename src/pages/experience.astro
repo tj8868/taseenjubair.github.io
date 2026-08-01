@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { experience, education } from "../data/site";
+
+const description =
+  "Research, teaching, and engineering roles across public health, disaster resilience, and infrastructure in Bangladesh.";
+---
+
+<BaseLayout title="Experience" description={description}>
+  <section>
+    <p class="eyebrow">Professional history</p>
+    <h2
+      class="mt-3 text-3xl sm:text-4xl xl:text-5xl font-semibold tracking-tight text-[var(--fg-strong)]"
+    >
+      Experience
+    </h2>
+    <p class="mt-5 text-lg leading-relaxed text-[var(--muted)] max-w-[68ch]">
+      {description}
+    </p>
+  </section>
+
+  <section class="mt-12">
+    <ol class="relative border-l border-[var(--border)] pl-6 sm:pl-8 flex flex-col gap-8">
+      {
+        experience.map((job) => (
+          <li class="relative">
+            <span
+              aria-hidden="true"
+              class:list={[
+                "absolute -left-[calc(1.5rem+5px)] sm:-left-[calc(2rem+5px)] top-2 size-2.5 rounded-full border-2",
+                job.current
+                  ? "bg-[var(--accent)] border-[var(--accent)] shadow-[0_0_0_5px_var(--glow)]"
+                  : "bg-[var(--bg)] border-[var(--border)]",
+              ]}
+            />
+
+            <div class="card p-5 sm:p-6">
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span class="eyebrow">{job.period}</span>
+                {job.current && (
+                  <span class="chip !text-[var(--accent)] !border-[var(--accent)]">Current</span>
+                )}
+              </div>
+
+              <h3 class="mt-2 text-lg sm:text-xl font-semibold tracking-tight text-[var(--fg-strong)]">
+                {job.role}
+              </h3>
+              <p class="mt-1 text-sm font-medium text-[var(--accent)]">{job.org}</p>
+              <p class="text-sm text-[var(--muted)]">{job.unit}</p>
+
+              <ul class="mt-4 grid gap-2.5 xl:grid-cols-2 xl:gap-x-8">
+                {job.points.map((point) => (
+                  <li class="flex gap-2.5 text-sm leading-relaxed text-[var(--muted)]">
+                    <span aria-hidden="true" class="mt-2 size-1 shrink-0 rounded-full bg-[var(--accent)]" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="mt-14">
+    <h3 class="text-xl font-semibold tracking-tight text-[var(--fg-strong)]">Education</h3>
+    <ul class="mt-5 grid gap-4 xl:grid-cols-3">
+      {
+        education.map((e) => (
+          <li class="card p-5 flex flex-col">
+            <span class="eyebrow">{e.year}</span>
+            <h4 class="mt-2 text-base font-semibold leading-snug text-[var(--fg-strong)]">
+              {e.degree}
+            </h4>
+            <p class="mt-1.5 text-sm text-[var(--muted)]">{e.school}</p>
+            {e.note && <p class="mt-2 chip self-start">{e.note}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>

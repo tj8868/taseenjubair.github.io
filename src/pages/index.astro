@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import { profile, about, stats, skills, contact } from "../data/site";
+import { url } from "../lib/url";
+---
+
+<BaseLayout title="About" description={about.lead}>
+  <!-- Hero -->
+  <section>
+    <p class="eyebrow">{profile.kicker}</p>
+    <h2
+      class="mt-3 text-3xl sm:text-4xl xl:text-5xl font-semibold tracking-tight text-[var(--fg-strong)] text-balance"
+    >
+      About
+    </h2>
+    <p class="mt-5 text-lg leading-relaxed text-[var(--muted)] max-w-[68ch]">
+      {about.lead}
+    </p>
+
+    <div class="mt-7 flex flex-wrap gap-3">
+      <a href={url("/experience/")} class="btn-primary">
+        View experience
+        <Icon name="arrow" size={15} />
+      </a>
+      <a href="mailto:taseenjubair@gmail.com" class="btn-secondary">
+        <Icon name="mail" size={15} />
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="mt-12 grid gap-4 grid-cols-2 xl:grid-cols-4">
+    {
+      stats.map((s) => (
+        <div class="panel p-5">
+          <p class="text-3xl xl:text-4xl font-semibold tracking-tight text-[var(--accent)]">
+            {s.value}
+          </p>
+          <p class="mt-2 text-sm font-medium text-[var(--fg-strong)] leading-snug">{s.label}</p>
+          {s.note && <p class="mt-1 text-xs text-[var(--muted)]">{s.note}</p>}
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- Narrative -->
+  <section class="mt-14 grid gap-10 lg:grid-cols-2">
+    {
+      about.sections.map((sec) => (
+        <div>
+          <h3 class="text-xl font-semibold tracking-tight text-[var(--fg-strong)]">
+            {sec.heading}
+          </h3>
+          <div class="mt-4 prose-body">
+            {sec.paragraphs.map((p) => (
+              <p>{p}</p>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- Research interests -->
+  <section class="mt-14">
+    <h3 class="text-xl font-semibold tracking-tight text-[var(--fg-strong)]">
+      Research interests
+    </h3>
+    <ul class="mt-4 flex flex-wrap gap-2">
+      {about.interests.map((i) => <li class="chip">{i}</li>)}
+    </ul>
+  </section>
+
+  <!-- Skills -->
+  <section class="mt-14">
+    <h3 class="text-xl font-semibold tracking-tight text-[var(--fg-strong)]">Skills & tools</h3>
+    <div class="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      {
+        skills.map((group) => (
+          <div class="card p-5">
+            <p class="eyebrow">{group.group}</p>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <li class="chip">{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="mt-14">
+    <div class="panel p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
+      <div>
+        <h3 class="text-xl font-semibold tracking-tight text-[var(--fg-strong)]">
+          Let's work together
+        </h3>
+        <p class="mt-2 text-sm leading-relaxed text-[var(--muted)] max-w-[52ch]">
+          {contact.blurb}
+        </p>
+      </div>
+      <a href="mailto:taseenjubair@gmail.com" class="btn-primary shrink-0">
+        <Icon name="mail" size={15} />
+        taseenjubair@gmail.com
+      </a>
+    </div>
+  </section>
+</BaseLayout>

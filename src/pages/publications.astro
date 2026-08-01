@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import { publications, statusLabels, type PubStatus } from "../data/site";
+
+const order: PubStatus[] = ["published", "review", "prep"];
+const grouped = order
+  .map((status) => ({
+    status,
+    label: statusLabels[status],
+    items: publications.filter((p) => p.status === status),
+  }))
+  .filter((g) => g.items.length > 0);
+
+const description =
+  "Peer-reviewed publications, manuscripts under review, and work in preparation by H M Taseen Jubair Bhuiyan.";
+---
+
+<BaseLayout title="Publications" description={description}>
+  <section>
+    <p class="eyebrow">Research output</p>
+    <h2
+      class="mt-3 text-3xl sm:text-4xl xl:text-5xl font-semibold tracking-tight text-[var(--fg-strong)]"
+    >
+      Publications
+    </h2>
+    <p class="mt-5 text-lg leading-relaxed text-[var(--muted)] max-w-[68ch]">
+      {description}
+    </p>
+  </section>
+
+  {
+    grouped.map((group) => (
+      <section class="mt-12">
+        <div class="flex items-center gap-3">
+          <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+            {group.label}
+          </h3>
+          <span class="text-xs text-[var(--muted)]">({group.items.length})</span>
+          <span class="h-px flex-1 bg-[var(--border)]" />
+        </div>
+
+        <ul class="mt-5 grid gap-4 xl:grid-cols-2">
+          {group.items.map((p) => (
+            <li class="card p-5 sm:p-6 flex flex-col">
+              <div class="flex items-baseline justify-between gap-4">
+                <span class="eyebrow">{p.venue.split("·")[0].trim()}</span>
+                {p.year && <span class="text-xs font-medium text-[var(--muted)] shrink-0">{p.year}</span>}
+              </div>
+
+              <h4 class="mt-2 text-base sm:text-lg font-semibold leading-snug text-[var(--fg-strong)] text-balance">
+                {p.title}
+              </h4>
+
+              <p class="mt-2 text-sm text-[var(--muted)] leading-relaxed">{p.authors}</p>
+              <p class="mt-1 text-sm text-[var(--muted)] leading-relaxed">{p.venue}</p>
+
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {p.tags.map((t) => (
+                  <li class="chip">#{t}</li>
+                ))}
+              </ul>
+
+              {p.href && (
+                <a
+                  href={p.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-4 inline-flex items-center gap-1.5 self-start text-sm font-medium link-underline"
+                >
+                  View publication
+                  <Icon name="external" size={14} />
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</BaseLayout>

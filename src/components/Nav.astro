@@ -1,0 +1,150 @@
+---
+import Icon from "./Icon.astro";
+import { nav } from "../data/site";
+import { url, isActive } from "../lib/url";
+
+const pathname = Astro.url.pathname;
+---
+
+<header
+  class="no-print nav-shell sticky top-0 z-40 -mx-4 sm:-mx-6 xl:-mx-10 px-4 sm:px-6 xl:px-10 border-b border-[var(--border)] bg-[color-mix(in_oklab,var(--bg)_72%,transparent)] backdrop-blur-xl backdrop-saturate-150"
+>
+  <div class="flex items-center justify-between gap-4 h-16">
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          nav.map((item) => {
+            const active = isActive(item.href, pathname);
+            return (
+              <li>
+                <a
+                  href={url(item.href)}
+                  aria-current={active ? "page" : undefined}
+                  class:list={[
+                    "inline-block rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
+                    active
+                      ? "text-[var(--accent)] bg-[color-mix(in_oklab,var(--accent)_12%,transparent)]"
+                      : "text-[var(--muted)] hover:text-[var(--fg-strong)]",
+                  ]}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      id="menu-open"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-drawer"
+      class="md:hidden grid place-items-center size-10 rounded-lg border border-[var(--border)] text-[var(--fg)]"
+    >
+      <Icon name="menu" size={19} />
+    </button>
+
+    <button
+      type="button"
+      id="theme-toggle"
+      aria-label="Switch theme"
+      class="grid place-items-center size-10 rounded-lg border border-[var(--border)] text-[var(--muted)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
+    >
+      <span data-theme-icon="light" class="contents"><Icon name="sun" size={17} /></span>
+      <span data-theme-icon="dark" class="contents"><Icon name="moon" size={17} /></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div id="mobile-drawer" class="no-print md:hidden fixed inset-0 z-50 hidden">
+  <div id="drawer-scrim" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <nav
+    aria-label="Mobile"
+    class="mobile-drawer absolute right-0 top-0 h-full w-72 max-w-[85vw] border-l border-[var(--border)] bg-[color-mix(in_oklab,var(--bg)_80%,transparent)] backdrop-blur-2xl backdrop-saturate-150 p-5 flex flex-col gap-2"
+  >
+    <button
+      type="button"
+      id="menu-close"
+      aria-label="Close menu"
+      class="self-end grid place-items-center size-10 rounded-lg border border-[var(--border)] text-[var(--fg)]"
+    >
+      <Icon name="close" size={19} />
+    </button>
+    <ul class="mt-2 flex flex-col gap-1">
+      {
+        nav.map((item) => {
+          const active = isActive(item.href, pathname);
+          return (
+            <li>
+              <a
+                href={url(item.href)}
+                aria-current={active ? "page" : undefined}
+                class:list={[
+                  "block rounded-lg px-4 py-3 text-base font-medium transition-colors",
+                  active
+                    ? "text-[var(--accent)] bg-[color-mix(in_oklab,var(--accent)_12%,transparent)]"
+                    : "text-[var(--fg)] hover:bg-[var(--surface)]",
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
+</div>
+
+<style>
+  /* Show only the icon matching the *opposite* of the current theme. */
+  [data-theme-icon="dark"] {
+    display: none;
+  }
+  :global([data-theme="dark"]) [data-theme-icon="light"] {
+    display: none;
+  }
+  :global([data-theme="dark"]) [data-theme-icon="dark"] {
+    display: contents;
+  }
+</style>
+
+<script>
+  // ── Theme toggle ────────────────────────────────────────────────────────────
+  const root = document.documentElement;
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch {
+      /* private mode: theme just won't persist */
+    }
+  });
+
+  // ── Mobile drawer ───────────────────────────────────────────────────────────
+  const drawer = document.getElementById("mobile-drawer");
+  const openBtn = document.getElementById("menu-open");
+  const closeBtn = document.getElementById("menu-close");
+  const scrim = document.getElementById("drawer-scrim");
+
+  function setDrawer(open: boolean) {
+    if (!drawer) return;
+    drawer.classList.toggle("hidden", !open);
+    openBtn?.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+    if (open) closeBtn?.focus();
+    else openBtn?.focus();
+  }
+
+  openBtn?.addEventListener("click", () => setDrawer(true));
+  closeBtn?.addEventListener("click", () => setDrawer(false));
+  scrim?.addEventListener("click", () => setDrawer(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !drawer?.classList.contains("hidden")) setDrawer(false);
+  });
+</script>

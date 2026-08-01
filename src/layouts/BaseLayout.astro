@@ -1,0 +1,96 @@
+---
+import "@fontsource-variable/inter";
+import "../styles/global.css";
+import Sidebar from "../components/Sidebar.astro";
+import Nav from "../components/Nav.astro";
+import { profile, socials } from "../data/site";
+import { url } from "../lib/url";
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+
+const pageTitle = `${title} | ${profile.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.role,
+  email: "taseenjubair@gmail.com",
+  address: { "@type": "PostalAddress", addressLocality: profile.location },
+  url: canonical,
+  sameAs: socials.filter((s) => s.href.startsWith("http")).map((s) => s.href),
+};
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#1c2622" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f2f6f2" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" href={url("/favicon.svg")} type="image/svg+xml" />
+    <link rel="sitemap" href={url("/sitemap-index.xml")} />
+
+    <!-- Applied before first paint so the theme never flashes. -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+          document.documentElement.dataset.theme =
+            stored || (prefersLight ? "light" : "dark");
+        } catch (e) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+
+  <body>
+    <a
+      href="#main"
+      class="no-print sr-only focus:not-sr-only focus:fixed focus:z-50 focus:top-3 focus:left-3 focus:rounded-lg focus:bg-[var(--accent)] focus:px-4 focus:py-2 focus:text-[var(--accent-contrast)]"
+    >
+      Skip to content
+    </a>
+
+    <div class="mx-auto flex max-w-[var(--shell)] flex-col lg:flex-row">
+      <Sidebar />
+
+      <div class="min-w-0 flex-1 px-4 sm:px-6 xl:px-10">
+        <Nav />
+
+        <main id="main" class="animate-rise py-10 sm:py-12 xl:py-16">
+          <slot />
+        </main>
+
+        <footer
+          class="border-t border-[var(--border)] py-8 text-sm text-[var(--muted)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
+        >
+          <p>&copy; {new Date().getFullYear()} {profile.shortName}. All rights reserved.</p>
+          <p>Built with Astro · Hosted on GitHub Pages</p>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

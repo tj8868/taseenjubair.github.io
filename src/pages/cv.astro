@@ -1,0 +1,171 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import {
+  profile,
+  about,
+  experience,
+  education,
+  skills,
+  publications,
+  statusLabels,
+  socials,
+} from "../data/site";
+import { url } from "../lib/url";
+
+const description = `Curriculum vitae of ${profile.name}: public health and development research.`;
+---
+
+<BaseLayout title="CV" description={description}>
+  <section class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <p class="eyebrow">Curriculum vitae</p>
+      <h2
+        class="mt-3 text-3xl sm:text-4xl xl:text-5xl font-semibold tracking-tight text-[var(--fg-strong)]"
+      >
+        CV
+      </h2>
+    </div>
+
+    <div class="no-print flex gap-3">
+      {
+        profile.resume && (
+          <a
+            href={url(profile.resume)}
+            class="btn-primary"
+          >
+            <Icon name="download" size={15} />
+            Download PDF
+          </a>
+        )
+      }
+      <button
+        type="button"
+        id="print-cv"
+        class="btn-secondary"
+      >
+        Print
+      </button>
+    </div>
+  </section>
+
+  <p class="mt-5 text-lg leading-relaxed text-[var(--muted)] max-w-[68ch]">{about.lead}</p>
+
+  <div class="mt-12 grid gap-12 xl:grid-cols-[1.6fr_1fr] xl:gap-14">
+    <div class="flex flex-col gap-12 min-w-0">
+      <section>
+        <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+          Experience
+        </h3>
+        <ul class="mt-5 flex flex-col gap-6">
+          {
+            experience.map((job) => (
+              <li class="border-l-2 border-[var(--border)] pl-5">
+                <p class="eyebrow">{job.period}</p>
+                <h4 class="mt-1 text-base font-semibold text-[var(--fg-strong)]">
+                  {job.role} · <span class="text-[var(--accent)]">{job.org}</span>
+                </h4>
+                <p class="text-sm text-[var(--muted)]">{job.unit}</p>
+                <ul class="mt-3 flex flex-col gap-2">
+                  {job.points.map((point) => (
+                    <li class="flex gap-2.5 text-sm leading-relaxed text-[var(--muted)]">
+                      <span aria-hidden="true" class="mt-2 size-1 shrink-0 rounded-full bg-[var(--accent)]" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+          Publications
+        </h3>
+        <ul class="mt-5 flex flex-col gap-4">
+          {
+            publications.map((p) => (
+              <li class="border-l-2 border-[var(--border)] pl-5">
+                <p class="eyebrow">
+                  {statusLabels[p.status]}
+                  {p.year && ` · ${p.year}`}
+                </p>
+                <h4 class="mt-1 text-sm font-semibold leading-snug text-[var(--fg-strong)]">
+                  {p.title}
+                </h4>
+                <p class="mt-1 text-sm text-[var(--muted)]">{p.authors}</p>
+                <p class="text-sm text-[var(--muted)]">{p.venue}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </div>
+
+    <div class="flex flex-col gap-12 min-w-0">
+      <section>
+        <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+          Education
+        </h3>
+        <ul class="mt-5 flex flex-col gap-5">
+          {
+            education.map((e) => (
+              <li>
+                <p class="eyebrow">{e.year}</p>
+                <h4 class="mt-1 text-sm font-semibold text-[var(--fg-strong)]">{e.degree}</h4>
+                <p class="mt-0.5 text-sm text-[var(--muted)]">{e.school}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+          Skills
+        </h3>
+        <ul class="mt-5 flex flex-col gap-4">
+          {
+            skills.map((g) => (
+              <li>
+                <p class="eyebrow">{g.group}</p>
+                <p class="mt-1.5 text-sm leading-relaxed text-[var(--muted)]">
+                  {g.items.join(" · ")}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section>
+        <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+          Contact
+        </h3>
+        <ul class="mt-5 flex flex-col gap-2">
+          {
+            socials.map((s) => (
+              <li class="text-sm">
+                <span class="text-[var(--muted)]">{s.label}: </span>
+                <a
+                  href={s.href}
+                  target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  class="link-underline break-all"
+                >
+                  {s.href.replace(/^mailto:|^https?:\/\/(www\.)?/, "")}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  document.getElementById("print-cv")?.addEventListener("click", () => window.print());
+</script>
