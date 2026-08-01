@@ -113,8 +113,12 @@ function fromSnapshot(): Payload | null {
 async function resolveSite(): Promise<Site> {
   try {
     const payload = await fromApi();
-    saveSnapshot(payload);
-    console.info(`[cms] content loaded from ${CMS_URL} and snapshotted.`);
+    // Only builds write the snapshot. In dev this runs on every page view, and
+    // rewriting a tracked file that often just churns the git diff.
+    if (import.meta.env.PROD) {
+      saveSnapshot(payload);
+      console.info(`[cms] content loaded from ${CMS_URL} and snapshotted.`);
+    }
     return { ...payload, source: "api" };
   } catch (err) {
     const reason = err instanceof Error ? err.message : String(err);
@@ -132,8 +136,16 @@ async function resolveSite(): Promise<Site> {
 
 let cached: Promise<Site> | null = null;
 
-/** Memoised so a multi-page build hits the API once, not once per page. */
+/**
+ * Memoised during a build, so generating five pages hits the API once.
+ *
+ * NOT memoised in dev. The dev server is one long-lived process, so caching
+ * there meant admin panel edits never showed up without restarting it, which
+ * defeats the point of having a live backend. One localhost request per page
+ * view is cheap.
+ */
 export function getSite(): Promise<Site> {
+  if (!import.meta.env.PROD) return resolveSite();
   cached ??= resolveSite();
   return cached;
 }
