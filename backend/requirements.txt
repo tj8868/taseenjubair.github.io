@@ -1,8 +1,12 @@
-fastapi==0.115.6
-uvicorn[standard]==0.34.0
-sqlalchemy==2.0.36
-pydantic==2.10.4
-pydantic-settings==2.7.0
-jinja2==3.1.5
-python-multipart==0.0.20
-itsdangerous==2.2.0
+# Floors, not pins. Python 3.14 needs recent wheels, and pinning exact versions
+# here sends pip off to compile pydantic-core from Rust source.
+# Plain uvicorn rather than uvicorn[standard]: the extras pull httptools and
+# watchfiles, which are native, and --reload works fine without them.
+fastapi>=0.115
+uvicorn>=0.34
+sqlalchemy>=2.0.36
+pydantic>=2.10
+pydantic-settings>=2.7
+jinja2>=3.1.5
+python-multipart>=0.0.20
+itsdangerous>=2.2

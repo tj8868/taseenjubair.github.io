@@ -1,0 +1,61 @@
+{
+  "profile": {
+    "name": "H M Taseen Jubair Bhuiyan",
+    "shortName": "T. J. Bhuiyan",
+    "kicker": "Public Health · Data Science · Artificial Intelligence · Research",
+    "role": "Public Health & Development Research",
+    "location": "Dhaka, Bangladesh",
+    "bio": "Research associate working across public health, WASH, and disaster resilience, turning field data into evidence for planning and policy.",
+    "photo": null,
+    "photoAlt": "Portrait of H M Taseen Jubair Bhuiyan",
+    "resume": null
+  },
+  "about": {
+    "lead": "Public health and development research professional with experience supporting healthcare, WASH, and disaster resilience projects through data-driven analysis, field coordination, and technical reporting.",
+    "sections": [
+      {
+        "heading": "Background",
+        "paragraphs": [
+          "I began in civil engineering at RUET and moved toward public health and development research, where infrastructure, environment, and population health intersect. That path now runs through an M.Sc. in Applied Statistics and Data Science at Jahangirnagar University.",
+          "My work sits between the field and the analysis: designing collection instruments, running KIIs and FGDs, validating what comes back, and turning it into something a planner or a policymaker can act on."
+        ]
+      },
+      {
+        "heading": "Current work",
+        "paragraphs": [
+          "At Daffodil International University I support public health research on healthcare data analysis, disease patterns, and health monitoring systems, from study design through statistical interpretation and reporting.",
+          "Recent work with the Cox's Bazar Development Authority covered WASH infrastructure and cyclone shelter assessments, with GIS-based vulnerability and risk mapping feeding directly into emergency response strategy."
+        ]
+      }
+    ],
+    "interests": [
+      "Public Health Research",
+      "WASH & Environmental Health",
+      "Disaster Risk Reduction",
+      "Geospatial Vulnerability Analysis",
+      "Applied Statistics",
+      "AI in Health Prediction"
+    ]
+  },
+  "education": [
+    {
+      "degree": "M.Sc. Applied Statistics & Data Science",
+      "school": "Jahangirnagar University, Dhaka",
+      "note": "Thesis programme",
+      "year": "Expected 2026"
+    },
+    {
+      "degree": "B.Sc. Civil Engineering",
+      "school": "Rajshahi University of Engineering & Technology (RUET)",
+      "note": null,
+      "year": "2021"
+    },
+    {
+      "degree": "Higher Secondary Certificate",
+      "school": "Notre Dame College, Dhaka",
+      "note": null,
+      "year": "2013"
+    }
+  ],
+  "content": []
+}

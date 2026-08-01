@@ -15,7 +15,7 @@
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 
 import {
   profile as fallbackProfile,
@@ -25,7 +25,10 @@ import {
 
 const CMS_URL = (import.meta.env.PUBLIC_CMS_URL ?? "http://127.0.0.1:8000").replace(/\/$/, "");
 const TIMEOUT_MS = 4000;
-const SNAPSHOT_PATH = fileURLToPath(new URL("../data/cms-snapshot.json", import.meta.url));
+// Resolved from the project root, not from import.meta.url: this module gets
+// bundled into dist/chunks/ during a build, so a module-relative path would
+// write the snapshot into dist/ and it would never be committed.
+const SNAPSHOT_PATH = resolve(process.cwd(), "src/data/cms-snapshot.json");
 
 export type Profile = {
   name: string;
