@@ -19,11 +19,17 @@
         <a href="/back/content" class="{{ 'on' if active == 'content' }}">Content</a>
         <a href="/back/account" class="{{ 'on' if active == 'account' }}">Account</a>
       </nav>
-      <form method="post" action="/back/logout" class="logout">
-        <input type="hidden" name="csrf" value="{{ csrf }}" />
-        <span class="who">{{ admin.username }}</span>
-        <button type="submit" class="btn ghost">Log out</button>
-      </form>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <form method="post" action="/back/publish" style="margin: 0;">
+          <input type="hidden" name="csrf" value="{{ csrf }}" />
+          <button type="submit" class="btn primary" style="padding: 0.35rem 0.8rem; font-size: 0.82rem; background: #2f855a; border-color: #276749;">🚀 Publish to GitHub</button>
+        </form>
+        <form method="post" action="/back/logout" class="logout" style="margin: 0;">
+          <input type="hidden" name="csrf" value="{{ csrf }}" />
+          <span class="who">{{ admin.username }}</span>
+          <button type="submit" class="btn ghost">Log out</button>
+        </form>
+      </div>
     </header>
 
     <main class="shell">

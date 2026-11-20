@@ -1,7 +1,9 @@
 """Server-rendered admin panel mounted at /back."""
 
+import json
 import secrets
 import shutil
+import subprocess
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile, status
@@ -209,6 +211,7 @@ def profile_save(
     profile.resume = resume.strip()
     profile.about_lead = about_lead.strip()
     db.commit()
+    update_local_snapshot(db)
     return back_to("/profile", "Profile saved")
 
 
@@ -551,3 +554,58 @@ def change_password(
     admin.password_hash = hash_password(new_password)
     db.commit()
     return back_to("/account", "Password changed")
+
+
+# ── automatic snapshot & GitHub publish ──────────────────────────────────────
+
+
+def update_local_snapshot(db: Session) -> None:
+    """Updates frontend/src/data/cms-snapshot.json immediately whenever an admin edits content."""
+    try:
+        root_dir = Path(__file__).resolve().parent.parent.parent.parent
+        snapshot_file = root_dir / "frontend" / "src" / "data" / "cms-snapshot.json"
+        payload = serialize.site_out(db).model_dump(by_alias=True)
+        snapshot_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(snapshot_file, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+    except Exception as e:
+        print(f"[cms] Warning: failed to auto-update snapshot: {e}")
+
+
+@router.post("/publish")
+def publish_to_github(
+    request: Request,
+    csrf: str = Form(""),
+    admin: models.AdminUser = Depends(current_admin),
+    db: Session = Depends(get_db),
+):
+    check_csrf(request, csrf)
+    update_local_snapshot(db)
+
+    root_dir = Path(__file__).resolve().parent.parent.parent.parent
+    try:
+        # 1. Commit changes
+        subprocess.run(["git", "add", "-A"], cwd=root_dir, check=True)
+        # Check if there are changes to commit
+        diff_check = subprocess.run(
+            ["git", "diff", "--cached", "--quiet"], cwd=root_dir
+        )
+        if diff_check.returncode != 0:
+            subprocess.run(
+                ["git", "commit", "-m", "Content update from CMS admin panel"],
+                cwd=root_dir,
+                check=True,
+            )
+
+        # 2. Push to main and feat/content-backend
+        subprocess.run(["git", "push", "origin", "main"], cwd=root_dir, check=False)
+        subprocess.run(["git", "push", "origin", "feat/content-backend"], cwd=root_dir, check=False)
+
+        return back_to(request.headers.get("referer", "/back").replace("/back", "") or "/", "Published+to+GitHub+Pages+successfully!")
+    except Exception as e:
+        return RedirectResponse(
+            f"/back?error=Publish+failed:+{str(e)}",
+            status_code=status.HTTP_303_SEE_OTHER,
+        )
+

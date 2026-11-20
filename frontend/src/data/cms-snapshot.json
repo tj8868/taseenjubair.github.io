@@ -8,7 +8,7 @@
     "bio": "Senior Assistant Coordinator (AI Engineering) at EASD and graduate researcher in Applied Statistics & Data Science, focusing on health metrics, epidemiology, automated AI data pipelines, and environmental exposure modeling.",
     "photo": "assets/profile.jpg",
     "photoAlt": "Portrait of H M Taseen Jubair Bhuiyan",
-    "resume": null
+    "resume": "assets/cv.pdf"
   },
   "about": {
     "lead": "Public health, health metrics, and AI engineering professional with an interdisciplinary background across civil engineering, applied statistics, and public health informatics. Experienced in architecting automated health ingestion pipelines, predictive modeling, environmental risk assessments, and structured evidence synthesis (PRISMA-ScR).",
@@ -21,10 +21,9 @@
         ]
       },
       {
-        "heading": "Epidemiology & GBD Alignment",
+        "heading": "Public Health",
         "paragraphs": [
-          "My research aligns closely with Global Burden of Disease (GBD) priorities in LMIC contexts, analyzing health-system, disease-surveillance, WASH, and environmental exposure data.",
-          "Key areas include cardiovascular disease telemetry, AI-driven scoping reviews (MI detection and Alzheimer's disease prediction), environmental health modeling (carcinogenic/non-carcinogenic heavy-metal risks, Sentinel-5P TROPOMI satellite atmospheric formaldehyde analysis), and disaster resilience/healthcare facility vulnerability assessments with Cox's Bazar Development Authority (CoxDA)."
+          "My research focuses on population health, environmental epidemiology, and disease surveillance in low- and middle-income countries (LMICs), aligning directly with Global Burden of Disease (GBD) priorities to mitigate preventable mortality and morbidity. Grounded in applied biostatistics, environmental risk modeling, and health systems research, my work investigates early cardiac event monitoring and chronic disease detection, toxicological and atmospheric pollution exposure assessments (including heavy-metal carcinogenic risks and satellite-derived urban formaldehyde anomalies), and the structural and operational vulnerability of frontline healthcare facilities in disaster-prone coastal corridors. By bridging complex field epidemiology, spatial analytics, and rigorous evidence synthesis, my objective is to generate actionable, policy-relevant evidence that strengthens disease prevention, environmental regulation, and health infrastructure resilience."
         ]
       },
       {
