@@ -17,11 +17,11 @@
   --border: #e2e8f0;
   --surface: rgba(255, 255, 255, 0.85);
   --surface-solid: #ffffff;
-  --accent: #10b981;
-  --accent-strong: #059669;
+  --accent: #45705a;
+  --accent-strong: #345545;
   --accent-contrast: #ffffff;
-  --glow: rgba(16, 185, 129, 0.12);
-  --ring: rgba(16, 185, 129, 0.45);
+  --glow: rgba(69, 112, 90, 0.12);
+  --ring: rgba(69, 112, 90, 0.45);
 
   --shell: 1600px;
   --sidebar: 300px;
@@ -38,11 +38,11 @@
   --border: #222730;
   --surface: rgba(19, 23, 30, 0.72);
   --surface-solid: #151921;
-  --accent: #10b981;
-  --accent-strong: #34d399;
-  --accent-contrast: #0c0e12;
-  --glow: rgba(16, 185, 129, 0.14);
-  --ring: rgba(16, 185, 129, 0.55);
+  --accent: #8dbfa2;
+  --accent-strong: #a6d3b7;
+  --accent-contrast: #111a14;
+  --glow: rgba(141, 191, 162, 0.14);
+  --ring: rgba(141, 191, 162, 0.55);
 }
 
 @theme inline {
