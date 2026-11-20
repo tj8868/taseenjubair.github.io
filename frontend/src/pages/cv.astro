@@ -5,7 +5,10 @@ import { getSite } from "../lib/cms";
 import { url } from "../lib/url";
 
 const { profile } = await getSite();
-const cvPdfUrl = url(profile.resume || "assets/cv.pdf");
+const rawPdfPath = profile.resume || "assets/cv.pdf";
+const cvPdfUrl = url(rawPdfPath);
+// Viewer URL exactly like cs.harvard.edu/malan/cv/
+const viewerUrl = url(`vendor/pdfjs/web/viewer.html?file=${encodeURIComponent(cvPdfUrl)}#pagemode=none`);
 const description = `Curriculum vitae of ${profile.name}: Public Health & AI Researcher.`;
 ---
 
@@ -40,60 +43,20 @@ const description = `Curriculum vitae of ${profile.name}: Public Health & AI Res
     </div>
   </section>
 
-  <!-- High-compatibility interactive PDF viewport with PDF.js client fallback -->
-  <div class="w-full rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface-solid)] shadow-lg p-2 sm:p-4">
-    <div id="pdf-container" class="flex flex-col items-center gap-4 w-full">
-      <div id="pdf-loading" class="py-16 text-center text-[var(--muted)]">
-        <p class="text-sm">Loading Curriculum Vitae...</p>
-      </div>
-    </div>
+  <!-- Interactive PDF Viewport (Same engine & architecture as cs.harvard.edu/malan/cv) -->
+  <div class="w-full rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--surface-solid)] shadow-xl">
+    <iframe
+      src={viewerUrl}
+      class="w-full h-[85vh] min-h-[650px] border-0 rounded-xl"
+      title="Curriculum Vitae PDF Viewer"
+      loading="lazy"
+    >
+      <p class="p-8 text-center text-[var(--muted)]">
+        Your browser does not support iframes. 
+        <a href={cvPdfUrl} class="link-underline font-medium text-[var(--accent)] ml-1">
+          Click here to view or download the CV
+        </a>.
+      </p>
+    </iframe>
   </div>
 </BaseLayout>
-
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script is:inline define:vars={{ cvUrl: cvPdfUrl }}>
-  (function () {
-    const container = document.getElementById("pdf-container");
-    const loading = document.getElementById("pdf-loading");
-
-    if (typeof pdfjsLib === "undefined") {
-      if (loading) {
-        loading.innerHTML = `<p class="p-8 text-center text-[var(--muted)]">Preview unavailable in your browser. <a href="${cvUrl}" class="link-underline font-medium text-[var(--accent)] ml-1">Click here to download the CV</a>.</p>`;
-      }
-      return;
-    }
-
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-
-    pdfjsLib.getDocument(cvUrl).promise.then(async function (pdfDoc) {
-      if (loading) loading.style.display = "none";
-
-      for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-        const page = await pdfDoc.getPage(pageNum);
-        const containerWidth = Math.min(container.clientWidth || 900, 1000);
-        const unscaledViewport = page.getViewport({ scale: 1 });
-        const scale = (containerWidth - 32) / unscaledViewport.width;
-        const viewport = page.getViewport({ scale: Math.max(scale, 1.2) });
-
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        canvas.className = "w-full max-w-4xl shadow-md rounded-lg mb-4 bg-white";
-
-        container.appendChild(canvas);
-
-        page.render({
-          canvasContext: ctx,
-          viewport: viewport,
-        });
-      }
-    }).catch(function (err) {
-      console.warn("PDF render fallback:", err);
-      if (loading) {
-        loading.innerHTML = `<p class="p-8 text-center text-[var(--muted)]">Preview blocked by browser settings. <a href="${cvUrl}" class="link-underline font-medium text-[var(--accent)] ml-1">Click here to view or download the CV</a>.</p>`;
-      }
-    });
-  })();
-</script>
