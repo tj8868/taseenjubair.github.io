@@ -239,14 +239,6 @@ export const publications: {
     year: "",
     tags: ["Seismic Risk", "Health Facilities", "GIS"],
   },
-  {
-    status: "prep",
-    title: "Scoping review on Alzheimer's disease prediction using AI-based approaches",
-    authors: "Bhuiyan, T.J. et al.",
-    venue: "Manuscript under preparation",
-    year: "",
-    tags: ["Artificial Intelligence", "Neurology", "Scoping Review"],
-  },
 ];
 
 export const statusLabels: Record<PubStatus, string> = {
