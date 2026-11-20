@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 /* ───────────────────────────────────────────────────────────────────────────
-   THEME TOKENS
-   Dark  = muted charcoal-green, lifted well off black, soft sage accent
-   Light = very light whitish green, soft and clean
+   THEME TOKENS: UNIFIED WARM AMBER & OBSIDIAN (NIXIE LAB AESTHETIC)
+   Light = clean warm parchment, deep charcoal typography, rich terracotta-amber accent
+   Dark  = deep obsidian slate, crisp luminous typography, glowing nixie-amber accent
    ─────────────────────────────────────────────────────────────────────────── */
 
 :root {
   color-scheme: light;
 
-  --bg: #f2f6f2;
-  --bg-deep: #e8efe9;
-  --fg: #222e26;
-  --fg-strong: #131c16;
-  --muted: #56675b;
-  --border: #dae3dc;
-  --surface: rgba(255, 255, 255, 0.7);
-  --surface-solid: #fafcfa;
-  --accent: #45705a;
-  --accent-strong: #345545;
+  --bg: #ffffff;
+  --bg-deep: #f8fafc;
+  --fg: #0f172a;
+  --fg-strong: #020617;
+  --muted: #475569;
+  --border: #e2e8f0;
+  --surface: #ffffff;
+  --surface-solid: #ffffff;
+  --accent: #ea580c;
+  --accent-strong: #c2410c;
   --accent-contrast: #ffffff;
-  --glow: rgba(69, 112, 90, 0.09);
-  --ring: rgba(69, 112, 90, 0.55);
+  --glow: rgba(234, 88, 12, 0.16);
+  --ring: rgba(234, 88, 12, 0.55);
 
   --shell: 1600px;
   --sidebar: 300px;
@@ -30,19 +30,19 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #1c2622;
-  --bg-deep: #18211d;
-  --fg: #dbe4dd;
-  --fg-strong: #eef4ef;
-  --muted: #93a89a;
-  --border: #33413a;
-  --surface: rgba(41, 54, 48, 0.55);
-  --surface-solid: #253029;
-  --accent: #8dbfa2;
-  --accent-strong: #a6d3b7;
-  --accent-contrast: #16201b;
-  --glow: rgba(141, 191, 162, 0.08);
-  --ring: rgba(141, 191, 162, 0.6);
+  --bg: #0c0e12;
+  --bg-deep: #07090b;
+  --fg: #d8dee9;
+  --fg-strong: #f4f6fb;
+  --muted: #8c97a8;
+  --border: #222730;
+  --surface: rgba(19, 23, 30, 0.72);
+  --surface-solid: #151921;
+  --accent: #f0883e;
+  --accent-strong: #ffa657;
+  --accent-contrast: #0c0e12;
+  --glow: rgba(240, 136, 62, 0.14);
+  --ring: rgba(240, 136, 62, 0.55);
 }
 
 @theme inline {
