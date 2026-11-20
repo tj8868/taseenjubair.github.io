@@ -9,7 +9,7 @@
     "photo": "assets/profile.jpg",
     "photoAlt": "Portrait of H M Taseen Jubair Bhuiyan",
     "resume": "assets/cv.pdf",
-    "accentColor": "#8dbfa2"
+    "accentColor": "#52b788"
   },
   "about": {
     "lead": "Public health, health metrics, and AI engineering professional with an interdisciplinary background across civil engineering, applied statistics, and public health informatics. Experienced in architecting automated health ingestion pipelines, predictive modeling, environmental risk assessments, and structured evidence synthesis (PRISMA-ScR).",
