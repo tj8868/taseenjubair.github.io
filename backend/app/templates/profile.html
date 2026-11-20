@@ -52,9 +52,13 @@
       <p class="hint">Relative to <code>public/</code>. Uploading automatically copies to <code>public/assets/</code> and fills this path.</p>
     </div>
     <div>
-      <label for="resume">CV / resume path</label>
+      <label for="resume">CV / resume path or Upload</label>
       <input id="resume" name="resume" value="{{ profile.resume }}" placeholder="assets/cv.pdf" />
-      <p class="hint">Leave blank to hide the download button.</p>
+      <div style="margin-top: 8px;">
+        <label for="resume_file" style="font-size: 0.85rem; color: #888;">Or choose a CV (PDF/DOCX) from your computer:</label>
+        <input type="file" id="resume_file" name="resume_file" accept=".pdf,.doc,.docx" style="padding: 4px;" />
+      </div>
+      <p class="hint">Relative to <code>public/</code>. Uploading automatically copies to <code>public/assets/</code> and fills this path.</p>
     </div>
   </div>
 

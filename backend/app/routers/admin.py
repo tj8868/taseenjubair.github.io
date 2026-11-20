@@ -164,6 +164,7 @@ def profile_save(
     resume: str = Form(""),
     about_lead: str = Form(""),
     photo_file: UploadFile | None = File(None),
+    resume_file: UploadFile | None = File(None),
     csrf: str = Form(""),
     admin: models.AdminUser = Depends(current_admin),
     db: Session = Depends(get_db),
@@ -199,6 +200,25 @@ def profile_save(
 
             photo = f"assets/{safe_name}"
 
+    # Handle CV / resume upload if provided
+    if resume_file and resume_file.filename:
+        filename = Path(resume_file.filename).name
+        ext = Path(filename).suffix.lower()
+        if ext in [".pdf", ".doc", ".docx"]:
+            frontend_assets = (
+                Path(__file__).resolve().parent.parent.parent.parent
+                / "frontend"
+                / "public"
+                / "assets"
+            )
+            frontend_assets.mkdir(parents=True, exist_ok=True)
+            safe_name = f"cv{ext}"
+            target_file = frontend_assets / safe_name
+            with open(target_file, "wb") as f:
+                shutil.copyfileobj(resume_file.file, f)
+
+            resume = f"assets/{safe_name}"
+
     profile.name = name.strip()
     profile.short_name = short_name.strip()
     profile.kicker = kicker.strip()
@@ -208,7 +228,8 @@ def profile_save(
     if photo.strip():
         profile.photo = photo.strip()
     profile.photo_alt = photo_alt.strip()
-    profile.resume = resume.strip()
+    if resume.strip():
+        profile.resume = resume.strip()
     profile.about_lead = about_lead.strip()
     db.commit()
     update_local_snapshot(db)
