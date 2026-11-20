@@ -17,6 +17,7 @@ class ProfileOut(BaseModel):
     photo: str | None
     photoAlt: str
     resume: str | None
+    accentColor: str | None = "#f0883e"
 
 
 class AboutSectionOut(BaseModel):

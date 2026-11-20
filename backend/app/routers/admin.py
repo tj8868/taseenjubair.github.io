@@ -162,6 +162,7 @@ def profile_save(
     photo: str = Form(""),
     photo_alt: str = Form(""),
     resume: str = Form(""),
+    accent_color: str = Form("#f0883e"),
     about_lead: str = Form(""),
     photo_file: UploadFile | None = File(None),
     resume_file: UploadFile | None = File(None),
@@ -230,6 +231,8 @@ def profile_save(
     profile.photo_alt = photo_alt.strip()
     if resume.strip():
         profile.resume = resume.strip()
+    if accent_color.strip():
+        profile.accent_color = accent_color.strip()
     profile.about_lead = about_lead.strip()
     db.commit()
     update_local_snapshot(db)

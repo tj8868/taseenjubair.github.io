@@ -40,6 +40,7 @@ export type Profile = {
   photo: string | null;
   photoAlt: string;
   resume: string | null;
+  accentColor?: string;
 };
 
 export type About = {

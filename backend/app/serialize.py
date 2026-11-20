@@ -59,6 +59,7 @@ def profile_out(row: models.Profile) -> schemas.ProfileOut:
         photo=row.photo or None,
         photoAlt=row.photo_alt,
         resume=row.resume or None,
+        accentColor=getattr(row, "accent_color", "#f0883e") or "#f0883e",
     )
 
 

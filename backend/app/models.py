@@ -34,6 +34,7 @@ class Profile(Base):
     photo: Mapped[str] = mapped_column(String(255), default="")
     photo_alt: Mapped[str] = mapped_column(String(255), default="")
     resume: Mapped[str] = mapped_column(String(255), default="")
+    accent_color: Mapped[str] = mapped_column(String(32), default="#f0883e")
     about_lead: Mapped[str] = mapped_column(Text, default="")
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=_now, onupdate=_now)
 

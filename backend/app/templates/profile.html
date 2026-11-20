@@ -65,6 +65,20 @@
   <label for="photo_alt">Photo alt text</label>
   <input id="photo_alt" name="photo_alt" value="{{ profile.photo_alt }}" />
 
+  <div class="card" style="margin-top: 1rem; border-color: color-mix(in oklab, var(--border) 80%, transparent);">
+    <h2>Accent Color Scheme</h2>
+    <p class="hint" style="margin-bottom: 0.75rem;">Choose the main highlight color for buttons, tags, links, and glows across your website.</p>
+    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+      <input type="color" id="accent_color" name="accent_color" value="{{ profile.accent_color or '#f0883e' }}" style="height: 40px; width: 60px; padding: 2px; cursor: pointer; border-radius: 6px; border: 1px solid var(--border);" />
+      <span class="hint">Click the color box to pick any custom hex code. Presets:</span>
+      <button type="button" class="btn ghost" onclick="document.getElementById('accent_color').value='#f0883e';" style="color: #f0883e; border-color: #f0883e; padding: 0.2rem 0.6rem; font-size: 0.8rem;">🔥 Nixie Amber</button>
+      <button type="button" class="btn ghost" onclick="document.getElementById('accent_color').value='#2dd4bf';" style="color: #2dd4bf; border-color: #2dd4bf; padding: 0.2rem 0.6rem; font-size: 0.8rem;">🧬 Health Teal</button>
+      <button type="button" class="btn ghost" onclick="document.getElementById('accent_color').value='#10b981';" style="color: #10b981; border-color: #10b981; padding: 0.2rem 0.6rem; font-size: 0.8rem;">🌿 Emerald</button>
+      <button type="button" class="btn ghost" onclick="document.getElementById('accent_color').value='#38bdf8';" style="color: #38bdf8; border-color: #38bdf8; padding: 0.2rem 0.6rem; font-size: 0.8rem;">🌐 Cyan Data</button>
+      <button type="button" class="btn ghost" onclick="document.getElementById('accent_color').value='#a855f7';" style="color: #a855f7; border-color: #a855f7; padding: 0.2rem 0.6rem; font-size: 0.8rem;">💜 Deep Violet</button>
+    </div>
+  </div>
+
   <div class="actions">
     <button type="submit" class="btn primary">Save profile</button>
   </div>

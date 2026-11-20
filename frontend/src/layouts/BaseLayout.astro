@@ -48,6 +48,17 @@ const jsonLd = {
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
 
+    {profile.accentColor && (
+      <style is:inline define:vars={{ customAccent: profile.accentColor }}>
+        :root, [data-theme="dark"] {
+          --accent: var(--customAccent);
+          --accent-strong: var(--customAccent);
+          --glow: color-mix(in oklab, var(--customAccent) 18%, transparent);
+          --ring: color-mix(in oklab, var(--customAccent) 60%, transparent);
+        }
+      </style>
+    )}
+
     <link rel="icon" href={url("/favicon.svg")} type="image/svg+xml" />
     <link rel="sitemap" href={url("/sitemap-index.xml")} />
 
