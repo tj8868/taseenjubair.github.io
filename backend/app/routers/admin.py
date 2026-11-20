@@ -54,6 +54,17 @@ def current_admin(request: Request, db: Session = Depends(get_db)) -> models.Adm
 
 
 def render(request: Request, template: str, admin: models.AdminUser, **context) -> HTMLResponse:
+    # Always supply profile so accent color is applied to the CMS chrome
+    if "profile" not in context:
+        db = context.get("db")
+        if not db and hasattr(request.state, "db"):
+            db = request.state.db
+        if db:
+            context["profile"] = serialize.get_profile(db)
+        else:
+            from ..database import SessionLocal
+            with SessionLocal() as s:
+                context["profile"] = serialize.get_profile(s)
     return templates.TemplateResponse(
         request,
         template,

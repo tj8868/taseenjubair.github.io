@@ -1,15 +1,15 @@
 :root {
-  --bg: #131a17;
-  --surface: #1a2320;
-  --surface-2: #202b27;
-  --border: #2c3a35;
-  --fg: #d7e2dc;
-  --fg-strong: #f1f7f3;
-  --muted: #8fa39a;
-  --accent: #6ee7a8;
-  --accent-contrast: #0d1512;
+  --bg: #0c0e12;
+  --surface: #141820;
+  --surface-2: #1c222d;
+  --border: #262e3d;
+  --fg: #d8dee9;
+  --fg-strong: #f4f6fb;
+  --muted: #8c97a8;
+  --accent: #f0883e;
+  --accent-contrast: #0c0e12;
   --danger: #f87171;
-  --radius: 10px;
+  --radius: 12px;
 }
 
 * {
@@ -251,8 +251,15 @@ textarea:focus {
 .btn.primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: var(--accent-contrast);
+  color: #0c0e12;
   font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 12px color-mix(in oklab, var(--accent) 30%, transparent);
+  transition: all 0.2s ease;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 16px color-mix(in oklab, var(--accent) 50%, transparent);
 }
 
 .btn.ghost {
