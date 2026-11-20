@@ -223,15 +223,6 @@ export const publications: {
     href: undefined, // TODO add preprint DOI link
   },
   {
-    status: "published",
-    title: "Investigation on the use of demolished concrete and glass in concrete",
-    authors: "Bhuiyan, T.J. et al. [First Author]",
-    venue: "Landscape Architecture & Regional Planning · Vol. 4(4), pp. 81–86",
-    year: "2019",
-    tags: ["Sustainable Materials", "Recycled Aggregate"],
-    href: undefined, // TODO add DOI link
-  },
-  {
     status: "review",
     title: "Scoping review on myocardial infarction prediction using artificial intelligence",
     authors: "Bhuiyan, T.J. et al.",

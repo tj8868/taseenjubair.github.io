@@ -49,20 +49,26 @@
     {
       "degree": "M.Sc. in Applied Statistics & Data Science",
       "school": "Jahangirnagar University, Dhaka",
-      "note": "Current CGPA: 3.77 / 4.00 · Graduate Research on Sentinel-5P TROPOMI & Atmospheric HCHO",
+      "note": "CGPA: 3.77 / 4.00 (Completed) · Curriculum: Statistical Inference, Machine Learning, Spatial Statistics, Time-Series Analysis, High-Dimensional Inference, Bioinformatics",
       "year": "2026"
     },
     {
       "degree": "B.Sc. in Civil Engineering",
       "school": "Rajshahi University of Engineering & Technology (RUET)",
-      "note": "CGPA: 2.63 / 4.00 · Thesis published as First Author in LARP (2019)",
+      "note": "Core Curriculum: Numerical Methods, Engineering Hydrology, Applied Fluid Dynamics, Geomatics & Spatial Systems, Structural Resilience",
       "year": "2021"
     },
     {
-      "degree": "Higher Secondary Certificate (H.S.C.) & S.S.C.",
-      "school": "Notre Dame College / BIAM Model School & College, Dhaka",
-      "note": "Science · GPA: 5.00 / 5.00",
-      "year": "2013 / 2011"
+      "degree": "Higher Secondary Certificate (H.S.C.)",
+      "school": "Notre Dame College, Dhaka",
+      "note": "Science Group · GPA: 5.00 / 5.00",
+      "year": "2013"
+    },
+    {
+      "degree": "Secondary School Certificate (S.S.C.)",
+      "school": "BIAM Model School & College, Dhaka",
+      "note": "Science Group · GPA: 5.00 / 5.00",
+      "year": "2011"
     }
   ],
   "content": [
@@ -116,22 +122,6 @@
         "Healthcare Facilities"
       ],
       "featured": true
-    },
-    {
-      "id": 4,
-      "platform": "article",
-      "platformLabel": "Article / Blog",
-      "title": "Investigation on the Use of Demolished Concrete and Glass in Concrete",
-      "description": "Landscape Architecture and Regional Planning (2019). First Author.",
-      "url": "https://doi.org/10.11648/j.larp.20190404.13",
-      "videoId": null,
-      "thumbnail": null,
-      "publishedAt": "2019",
-      "tags": [
-        "Materials Engineering",
-        "Civil Engineering"
-      ],
-      "featured": false
     },
     {
       "id": 5,
