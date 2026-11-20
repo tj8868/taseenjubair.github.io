@@ -38,11 +38,11 @@
   --border: #222730;
   --surface: rgba(19, 23, 30, 0.72);
   --surface-solid: #151921;
-  --accent: #52b788;
-  --accent-strong: #74c69d;
-  --accent-contrast: #081c15;
-  --glow: rgba(82, 183, 136, 0.16);
-  --ring: rgba(82, 183, 136, 0.55);
+  --accent: #38d39f;
+  --accent-strong: #5eedb9;
+  --accent-contrast: #061912;
+  --glow: rgba(56, 211, 159, 0.18);
+  --ring: rgba(56, 211, 159, 0.6);
 }
 
 @theme inline {
