@@ -5,7 +5,7 @@
 <h1>Profile</h1>
 <p class="sub">Your name, role, and the identity block in the sidebar.</p>
 
-<form method="post" action="/back/profile" class="card">
+<form method="post" action="/back/profile" enctype="multipart/form-data" class="card">
   <input type="hidden" name="csrf" value="{{ csrf }}" />
 
   <div class="grid2">
@@ -43,9 +43,13 @@
 
   <div class="grid2">
     <div>
-      <label for="photo">Photo path</label>
+      <label for="photo">Photo path or Upload</label>
       <input id="photo" name="photo" value="{{ profile.photo }}" placeholder="assets/taseen.jpg" />
-      <p class="hint">Relative to <code>public/</code>. Leave blank to show your initials.</p>
+      <div style="margin-top: 8px;">
+        <label for="photo_file" style="font-size: 0.85rem; color: #888;">Or choose a picture from your computer:</label>
+        <input type="file" id="photo_file" name="photo_file" accept="image/*" style="padding: 4px;" />
+      </div>
+      <p class="hint">Relative to <code>public/</code>. Uploading automatically copies to <code>public/assets/</code> and fills this path.</p>
     </div>
     <div>
       <label for="resume">CV / resume path</label>

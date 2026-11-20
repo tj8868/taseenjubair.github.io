@@ -1,61 +1,154 @@
 {
   "profile": {
-    "name": "H M Taseen Jubair Bhuiyan",
-    "shortName": "Taseen",
-    "kicker": "Public Health · Data Science · Artificial Intelligence · Research · Environment",
-    "role": "Public Health & Development Research",
+    "name": "H.M. Taseen Jubair Bhuiyan",
+    "shortName": "T. J. Bhuiyan",
+    "kicker": "AI Engineering · Data Science · Climate & Environment · Public Health Engineering",
+    "role": "Public Health & AI Researcher",
     "location": "Dhaka, Bangladesh",
-    "bio": "Research associate working across public health, WASH, and disaster resilience, turning field data into evidence for planning and policy.",
-    "photo": null,
+    "bio": "Senior Assistant Coordinator (AI Engineering) at EASD and graduate researcher in Applied Statistics & Data Science, focusing on health metrics, epidemiology, automated AI data pipelines, and environmental exposure modeling.",
+    "photo": "assets/profile.jpg",
     "photoAlt": "Portrait of H M Taseen Jubair Bhuiyan",
     "resume": null
   },
   "about": {
-    "lead": "Public health and development research professional with experience supporting healthcare, WASH, and disaster resilience projects through data-driven analysis, field coordination, and technical reporting.",
+    "lead": "Public health, health metrics, and AI engineering professional with an interdisciplinary background across civil engineering, applied statistics, and public health informatics. Experienced in architecting automated health ingestion pipelines, predictive modeling, environmental risk assessments, and structured evidence synthesis (PRISMA-ScR).",
     "sections": [
       {
-        "heading": "Background",
+        "heading": "Research & Professional Focus",
         "paragraphs": [
-          "I began in civil engineering at RUET and moved toward public health and development research, where infrastructure, environment, and population health intersect. That path now runs through an M.Sc. in Applied Statistics and Data Science at Jahangirnagar University.",
-          "My work sits between the field and the analysis: designing collection instruments, running KIIs and FGDs, validating what comes back, and turning it into something a planner or a policymaker can act on."
+          "Currently serving as Senior Assistant Coordinator (AI Engineering) at Eminence Associates for Social Development (EASD), leading automated data-pipeline architecture and health informatics initiatives across urban health and infectious disease surveillance.",
+          "Previously Research Associate for a Ministry of ICT-funded project at Daffodil International University in collaboration with icddr,b, Bangladesh Medical University, and Jahangirnagar University, focusing on IoT physiological telemetry and ML modeling for early myocardial infarction detection."
         ]
       },
       {
-        "heading": "Current work",
+        "heading": "Epidemiology & GBD Alignment",
         "paragraphs": [
-          "At Daffodil International University I support public health research on healthcare data analysis, disease patterns, and health monitoring systems, from study design through statistical interpretation and reporting.",
-          "Recent work with the Cox's Bazar Development Authority covered WASH infrastructure and cyclone shelter assessments, with GIS-based vulnerability and risk mapping feeding directly into emergency response strategy."
+          "My research aligns closely with Global Burden of Disease (GBD) priorities in LMIC contexts, analyzing health-system, disease-surveillance, WASH, and environmental exposure data.",
+          "Key areas include cardiovascular disease telemetry, AI-driven scoping reviews (MI detection and Alzheimer's disease prediction), environmental health modeling (carcinogenic/non-carcinogenic heavy-metal risks, Sentinel-5P TROPOMI satellite atmospheric formaldehyde analysis), and disaster resilience/healthcare facility vulnerability assessments with Cox's Bazar Development Authority (CoxDA)."
+        ]
+      },
+      {
+        "heading": "Technical & Engineering Toolkit",
+        "paragraphs": [
+          "Expertise spans statistical modeling and data science (Python, R, SQL, mixed-effects models, repeated-measures ANOVA, clustering), geospatial analysis and GeoAI (ArcGIS Pro, QGIS, Google Earth Engine), automated pipeline engineering, and rigorous evidence synthesis under PRISMA-ScR and JBI methodologies."
         ]
       }
     ],
     "interests": [
-      "Public Health Research",
-      "WASH & Environmental Health",
-      "Disaster Risk Reduction",
-      "Geospatial Vulnerability Analysis",
-      "Applied Statistics",
-      "AI in Health Prediction"
+      "Epidemiology & Health Metrics",
+      "Global Burden of Disease (GBD) Alignment",
+      "AI Engineering & Automated Pipelines",
+      "Applied Statistics & Machine Learning",
+      "Environmental Health & Exposure Modeling",
+      "Cardiovascular & Neurodegenerative AI",
+      "Geospatial Analytics & Remote Sensing (GEE / TROPOMI)",
+      "Evidence Synthesis (PRISMA-ScR / JBI)"
     ]
   },
   "education": [
     {
-      "degree": "M.Sc. Applied Statistics & Data Science",
+      "degree": "M.Sc. in Applied Statistics & Data Science",
       "school": "Jahangirnagar University, Dhaka",
-      "note": "Thesis programme",
-      "year": "Expected 2026"
+      "note": "Current CGPA: 3.77 / 4.00 · Graduate Research on Sentinel-5P TROPOMI & Atmospheric HCHO",
+      "year": "2026"
     },
     {
-      "degree": "B.Sc. Civil Engineering",
+      "degree": "B.Sc. in Civil Engineering",
       "school": "Rajshahi University of Engineering & Technology (RUET)",
-      "note": null,
+      "note": "CGPA: 2.63 / 4.00 · Thesis published as First Author in LARP (2019)",
       "year": "2021"
     },
     {
-      "degree": "Higher Secondary Certificate",
-      "school": "Notre Dame College, Dhaka",
-      "note": null,
-      "year": "2013"
+      "degree": "Higher Secondary Certificate (H.S.C.) & S.S.C.",
+      "school": "Notre Dame College / BIAM Model School & College, Dhaka",
+      "note": "Science · GPA: 5.00 / 5.00",
+      "year": "2013 / 2011"
     }
   ],
-  "content": []
+  "content": [
+    {
+      "id": 1,
+      "platform": "article",
+      "platformLabel": "Article / Blog",
+      "title": "Deciphering the source of heavy metals in industrially affected river sediment of Shitalakshya river, Bangladesh, and potential ecological and health implications",
+      "description": "Journal of Hazardous Materials Advances (Elsevier, 2023). Q1 Journal publication on environmental pollution and health implications.",
+      "url": "https://doi.org/10.1016/j.hazadv.2023.100268",
+      "videoId": null,
+      "thumbnail": null,
+      "publishedAt": "2023",
+      "tags": [
+        "Environmental Health",
+        "Elsevier",
+        "Heavy Metals"
+      ],
+      "featured": true
+    },
+    {
+      "id": 2,
+      "platform": "article",
+      "platformLabel": "Article / Blog",
+      "title": "The Role of Artificial Intelligence in Detecting Myocardial Infarction: A Scoping Review",
+      "description": "Submitted to Springer Nature (November 2026). Co-corresponding author. 2,528 records screened, 32 studies included under PRISMA-ScR.",
+      "url": "",
+      "videoId": null,
+      "thumbnail": null,
+      "publishedAt": "2026",
+      "tags": [
+        "Artificial Intelligence",
+        "Cardiology",
+        "PRISMA-ScR"
+      ],
+      "featured": true
+    },
+    {
+      "id": 3,
+      "platform": "article",
+      "platformLabel": "Article / Blog",
+      "title": "Multi-Criteria Seismic Vulnerability Assessment of Healthcare Facilities Using Fuzzy C-Means Clustering in Cox's Bazar",
+      "description": "Preprint under peer review (August 2026). Applied Fuzzy C-Means clustering and MCDA in Python & ArcGIS Pro.",
+      "url": "",
+      "videoId": null,
+      "thumbnail": null,
+      "publishedAt": "2026",
+      "tags": [
+        "Disaster Resilience",
+        "GIS",
+        "Healthcare Facilities"
+      ],
+      "featured": true
+    },
+    {
+      "id": 4,
+      "platform": "article",
+      "platformLabel": "Article / Blog",
+      "title": "Investigation on the Use of Demolished Concrete and Glass in Concrete",
+      "description": "Landscape Architecture and Regional Planning (2019). First Author.",
+      "url": "https://doi.org/10.11648/j.larp.20190404.13",
+      "videoId": null,
+      "thumbnail": null,
+      "publishedAt": "2019",
+      "tags": [
+        "Materials Engineering",
+        "Civil Engineering"
+      ],
+      "featured": false
+    },
+    {
+      "id": 5,
+      "platform": "article",
+      "platformLabel": "Article / Blog",
+      "title": "Key Stakeholder Message: Dengue & Infectious Disease Surveillance and Forecasting in Bangladesh",
+      "description": "Bangladesh Urban Health Network (BUHN) Key Stakeholder Message.",
+      "url": "https://buhn.org/key-stakeholder-message-hm-taseen-jubair-bhuiyan",
+      "videoId": null,
+      "thumbnail": null,
+      "publishedAt": "2026",
+      "tags": [
+        "Infectious Disease",
+        "Surveillance",
+        "Public Health"
+      ],
+      "featured": false
+    }
+  ]
 }

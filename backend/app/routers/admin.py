@@ -1,9 +1,10 @@
 """Server-rendered admin panel mounted at /back."""
 
 import secrets
+import shutil
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, Form, HTTPException, Request, status
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import select
@@ -160,19 +161,50 @@ def profile_save(
     photo_alt: str = Form(""),
     resume: str = Form(""),
     about_lead: str = Form(""),
+    photo_file: UploadFile | None = File(None),
     csrf: str = Form(""),
     admin: models.AdminUser = Depends(current_admin),
     db: Session = Depends(get_db),
 ):
     check_csrf(request, csrf)
     profile = serialize.get_profile(db)
+
+    # Handle file upload if provided
+    if photo_file and photo_file.filename:
+        filename = Path(photo_file.filename).name
+        ext = Path(filename).suffix.lower()
+        if ext in [".jpg", ".jpeg", ".png", ".webp", ".svg", ".gif"]:
+            # Destination 1: backend/app/static/uploads
+            backend_uploads = Path(__file__).resolve().parent.parent / "static" / "uploads"
+            backend_uploads.mkdir(parents=True, exist_ok=True)
+            safe_name = f"profile{ext}"
+            target_backend = backend_uploads / safe_name
+            with open(target_backend, "wb") as f:
+                shutil.copyfileobj(photo_file.file, f)
+
+            # Destination 2: frontend/public/assets
+            frontend_assets = (
+                Path(__file__).resolve().parent.parent.parent.parent
+                / "frontend"
+                / "public"
+                / "assets"
+            )
+            try:
+                frontend_assets.mkdir(parents=True, exist_ok=True)
+                shutil.copy(target_backend, frontend_assets / safe_name)
+            except Exception:
+                pass
+
+            photo = f"assets/{safe_name}"
+
     profile.name = name.strip()
     profile.short_name = short_name.strip()
     profile.kicker = kicker.strip()
     profile.role = role.strip()
     profile.location = location.strip()
     profile.bio = bio.strip()
-    profile.photo = photo.strip()
+    if photo.strip():
+        profile.photo = photo.strip()
     profile.photo_alt = photo_alt.strip()
     profile.resume = resume.strip()
     profile.about_lead = about_lead.strip()
