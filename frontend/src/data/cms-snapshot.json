@@ -2,14 +2,14 @@
   "profile": {
     "name": "H.M. Taseen Jubair Bhuiyan",
     "shortName": "T. J. Bhuiyan",
-    "kicker": "AI Engineering · Data Science · Climate & Environment · Public Health Engineering",
+    "kicker": "AI Engineering · Data Science ·  Environmental Engineering · Public Health Engineering",
     "role": "Public Health & AI Researcher",
     "location": "Dhaka, Bangladesh",
     "bio": "Senior Assistant Coordinator (AI Engineering) at EASD and graduate researcher in Applied Statistics & Data Science, focusing on health metrics, epidemiology, automated AI data pipelines, and environmental exposure modeling.",
     "photo": "assets/profile.jpg",
     "photoAlt": "Portrait of H M Taseen Jubair Bhuiyan",
     "resume": "assets/cv.pdf",
-    "accentColor": "#8dbfa2"
+    "accentColor": "#2dd4bf"
   },
   "about": {
     "lead": "Public health, health metrics, and AI engineering professional with an interdisciplinary background across civil engineering, applied statistics, and public health informatics. Experienced in architecting automated health ingestion pipelines, predictive modeling, environmental risk assessments, and structured evidence synthesis (PRISMA-ScR).",
@@ -56,19 +56,7 @@
       "degree": "B.Sc. in Civil Engineering",
       "school": "Rajshahi University of Engineering & Technology (RUET)",
       "note": "Core Curriculum: Numerical Methods, Engineering Hydrology, Applied Fluid Dynamics, Geomatics & Spatial Systems, Structural Resilience",
-      "year": "2021"
-    },
-    {
-      "degree": "Higher Secondary Certificate (H.S.C.)",
-      "school": "Notre Dame College, Dhaka",
-      "note": "Science Group · GPA: 5.00 / 5.00",
-      "year": "2013"
-    },
-    {
-      "degree": "Secondary School Certificate (S.S.C.)",
-      "school": "BIAM Model School & College, Dhaka",
-      "note": "Science Group · GPA: 5.00 / 5.00",
-      "year": "2011"
+      "year": "2024"
     }
   ],
   "content": [

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a0d02" />
+      <stop offset="60%" stop-color="#0f0502" />
+      <stop offset="100%" stop-color="#050201" />
+    </radialGradient>
+
+    <!-- Glass tube highlight -->
+    <linearGradient id="glassReflect" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15" />
+      <stop offset="25%" stop-color="#ff9955" stop-opacity="0.05" />
+      <stop offset="70%" stop-color="#000000" stop-opacity="0" />
+      <stop offset="95%" stop-color="#ffffff" stop-opacity="0.2" />
+    </linearGradient>
+
+    <!-- Base / Cap metal -->
+    <linearGradient id="metal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#222" />
+      <stop offset="50%" stop-color="#555" />
+      <stop offset="100%" stop-color="#111" />
+    </linearGradient>
+
+    <!-- Glow filters for neon nixie glow -->
+    <filter id="nixieGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.8" result="blur1" />
+      <feGaussianBlur stdDeviation="3.5" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Fine anode grid pattern -->
+    <pattern id="anodeGrid" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M 0 4 L 4 0 M 0 0 L 4 4" fill="none" stroke="#ff6600" stroke-width="0.3" stroke-opacity="0.2" />
+    </pattern>
+  </defs>
+
+  <!-- Dark Background Badge -->
+  <rect width="64" height="64" rx="14" fill="#060302" />
+
+  <!-- Tube Outline and Inner Atmosphere -->
+  <!-- Top glass dome and cylinder body -->
+  <path d="M 17 24 C 17 13 47 13 47 24 L 47 51 C 47 54 44 56 41 56 L 23 56 C 20 56 17 54 17 51 Z" fill="url(#bgGlow)" stroke="#ff7722" stroke-width="0.6" stroke-opacity="0.4" />
+
+  <!-- Anode mesh screen inside tube -->
+  <path d="M 19 24 C 19 15 45 15 45 24 L 45 50 C 45 52 43 54 41 54 L 23 54 C 21 54 19 52 19 50 Z" fill="url(#anodeGrid)" />
+
+  <!-- Bottom Tube Pins / Base Mount -->
+  <rect x="20" y="56" width="24" height="3" rx="1.5" fill="url(#metal)" />
+  <rect x="24" y="59" width="3" height="3" fill="#333" />
+  <rect x="37" y="59" width="3" height="3" fill="#333" />
+
+  <!-- Glowing Nixie Filament Wireframe (Steins;Gate Divergence Meter font aesthetic '1') -->
+  <g filter="url(#nixieGlow)">
+    <!-- Ambient orange filament halo -->
+    <!-- The numeral 1 with crosshair circles / horizontal bars typical of IN-14 / Steins;Gate nixie tubes -->
+    <!-- Center circle lattice -->
+    <circle cx="32" cy="35" r="11" fill="none" stroke="#ff3b00" stroke-width="0.6" stroke-opacity="0.6" />
+    <line x1="21" y1="35" x2="43" y2="35" stroke="#ff4400" stroke-width="0.8" stroke-opacity="0.6" />
+
+    <!-- Active burning cathode digit '1' -->
+    <!-- Upper flag of 1 -->
+    <path d="M 26 27 L 32 21 L 32 49" fill="none" stroke="#ff5500" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 26 27 L 32 21 L 32 49" fill="none" stroke="#ff9933" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 26 27 L 32 21 L 32 49" fill="none" stroke="#fff4cc" stroke-width="1.0" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Foot of 1 -->
+    <line x1="24" y1="49" x2="40" y2="49" stroke="#ff5500" stroke-width="4.2" stroke-linecap="round" />
+    <line x1="24" y1="49" x2="40" y2="49" stroke="#ff9933" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="24" y1="49" x2="40" y2="49" stroke="#fff4cc" stroke-width="1.0" stroke-linecap="round" />
+  </g>
+
+  <!-- Glass Tube Specular Reflection -->
+  <path d="M 17 24 C 17 13 47 13 47 24 L 47 51 C 47 54 44 56 41 56 L 23 56 C 20 56 17 54 17 51 Z" fill="url(#glassReflect)" pointer-events="none" />
+  
+  <!-- Curved top highlight -->
+  <path d="M 21 21 C 26 16 38 16 43 21" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.4" stroke-linecap="round" />
+</svg>

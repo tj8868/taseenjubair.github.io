@@ -6,6 +6,12 @@ Astro site consumes **at build time**.
 The public site stays a static GitHub Pages build. Nothing here needs to be online for
 visitors: it only needs to be running when you rebuild the site.
 
+## Platform Guides
+
+- **Windows**: Follow the instructions below (`run.ps1`).
+- **Linux**: See [README.LINUX.md](README.LINUX.md) or execute `./backend/run.sh`.
+- **Android (Termux)**: See [README.ANDROID.md](README.ANDROID.md).
+
 ## Requirements
 
 Python 3.11 or newer. Check with `python --version`.
@@ -35,6 +41,7 @@ Default login is `admin` / `change-me`. **Change it at `/back/account` on first 
 python -m venv .venv
 .venv\Scripts\pip install -r requirements.txt
 copy .env.example .env
+## Command to run the app from withing the backend 
 .venv\Scripts\python -m uvicorn app.main:app --reload --port 8000
 ```
 
