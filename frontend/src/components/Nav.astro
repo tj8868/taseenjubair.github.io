@@ -21,7 +21,7 @@ const pathname = Astro.url.pathname;
                   href={url(item.href)}
                   aria-current={active ? "page" : undefined}
                   class:list={[
-                    "inline-block rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
+                    "inline-block whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-medium transition-colors",
                     active
                       ? "text-[var(--accent)] bg-[color-mix(in_oklab,var(--accent)_12%,transparent)]"
                       : "text-[var(--muted)] hover:text-[var(--fg-strong)]",

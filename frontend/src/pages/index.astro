@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
-import { skills, contact } from "../data/site";
+import { skills, contact, experienceHighlights } from "../data/site";
 import { getSite } from "../lib/cms";
 import { url } from "../lib/url";
 
@@ -76,6 +76,29 @@ const { profile, about, education } = await getSite();
               <p class="mt-1 text-sm text-[var(--muted)]">{e.school}</p>
               {e.note && <p class="mt-1 text-xs text-[var(--muted)]">{e.note}</p>}
             </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- Experience & Engineering Highlights -->
+  <section class="mt-14">
+    <div class="flex items-baseline justify-between gap-4">
+      <h3 class="text-xl font-semibold tracking-tight text-[var(--fg-strong)]">
+        Experience &amp; Workflow
+      </h3>
+      <div class="flex gap-4 text-sm font-medium">
+        <a href={url("/experience/")} class="link-underline">Full experience</a>
+        <a href={url("/tools/")} class="link-underline">Tools &amp; harnesses</a>
+      </div>
+    </div>
+    <ul class="mt-5 grid gap-4 sm:grid-cols-3">
+      {
+        experienceHighlights.map((item) => (
+          <li class="card p-5 flex flex-col">
+            <span class="eyebrow">{item.label}</span>
+            <p class="mt-2 text-sm leading-relaxed text-[var(--muted)]">{item.value}</p>
           </li>
         ))
       }

@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import { tools, categoryLabels, type ToolCategory } from "../data/tools";
+
+const order: ToolCategory[] = ["harness", "workflow", "agent", "plugin"];
+const grouped = order
+  .map((category) => ({
+    category,
+    label: categoryLabels[category],
+    items: tools.filter((t) => t.category === category),
+  }))
+  .filter((g) => g.items.length > 0);
+
+const platforms = [...new Set(tools.flatMap((t) => t.platforms))];
+
+const description =
+  "Cross-platform AI agentic harnesses, Spec-Driven Development workflows, and reusable plugins compatible with Claude, Gemini, Codex, and Hermes.";
+---
+
+<BaseLayout title="Tools" description={description}>
+  <section>
+    <p class="eyebrow">AI Engineering · Harnesses · Workflows</p>
+    <h2
+      class="mt-3 text-3xl sm:text-4xl xl:text-5xl font-semibold tracking-tight text-[var(--fg-strong)] text-balance"
+    >
+      Tools
+    </h2>
+    <p class="mt-5 text-lg leading-relaxed text-[var(--muted)] max-w-[68ch]">
+      {description}
+    </p>
+  </section>
+
+  <section class="mt-10">
+    <ul class="flex flex-wrap gap-2" role="list">
+      <li>
+        <button type="button" class="chip filter-chip is-on" data-filter="all" aria-pressed="true">
+          All
+        </button>
+      </li>
+      {
+        platforms.map((platform) => (
+          <li>
+            <button
+              type="button"
+              class="chip filter-chip"
+              data-filter={platform}
+              aria-pressed="false"
+            >
+              {platform}
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    grouped.map((group) => (
+      <section class="mt-12 tool-group">
+        <div class="flex items-center gap-3">
+          <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+            {group.label}
+          </h3>
+          <span class="text-xs text-[var(--muted)]">({group.items.length})</span>
+          <span class="h-px flex-1 bg-[var(--border)]" />
+        </div>
+
+        <ul class="mt-5 grid gap-4 xl:grid-cols-2">
+          {group.items.map((item) => (
+            <li class="card p-5 sm:p-6 flex flex-col" data-platforms={item.platforms.join(",")}>
+              <div class="flex items-baseline justify-between gap-4">
+                <h4 class="text-base sm:text-lg font-semibold leading-snug text-[var(--fg-strong)]">
+                  {item.name}
+                </h4>
+                <span class="text-xs font-medium text-[var(--muted)] shrink-0">
+                  {item.lastVerified}
+                </span>
+              </div>
+
+              <p class="mt-2 text-sm text-[var(--muted)] leading-relaxed">{item.summary}</p>
+
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {item.platforms.map((p) => (
+                  <li class="chip">{p}</li>
+                ))}
+              </ul>
+
+              {item.repoUrl && (
+                <a
+                  href={item.repoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-4 inline-flex items-center gap-1.5 self-start text-sm font-medium link-underline"
+                >
+                  View repository
+                  <Icon name="external" size={14} />
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</BaseLayout>
+
+<script>
+  const chips = document.querySelectorAll<HTMLButtonElement>(".filter-chip");
+  const cards = document.querySelectorAll<HTMLLIElement>("[data-platforms]");
+
+  chips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const filter = chip.dataset.filter || "all";
+      chips.forEach((c) => {
+        const active = c === chip;
+        c.classList.toggle("is-on", active);
+        c.setAttribute("aria-pressed", String(active));
+      });
+      cards.forEach((card) => {
+        const list = (card.dataset.platforms || "").split(",");
+        card.style.display = filter === "all" || list.includes(filter) ? "" : "none";
+      });
+    });
+  });
+</script>

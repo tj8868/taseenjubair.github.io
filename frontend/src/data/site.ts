@@ -36,8 +36,8 @@ export const socials = [
 
 export const nav = [
   { label: "About", href: "/" },
-  { label: "Content", href: "/content/" },
-  { label: "Publications", href: "/publications/" },
+  { label: "Research & Publications", href: "/research/" },
+  { label: "Tools", href: "/tools/" },
   { label: "Experience", href: "/experience/" },
   { label: "CV", href: "/cv/" },
 ];
@@ -259,13 +259,43 @@ export const education = [
     degree: "B.Sc. Civil Engineering",
     school: "Rajshahi University of Engineering & Technology (RUET)",
     note: null,
-    year: "2021",
+    year: "2024",
+  },
+];
+
+export const researchFocus = [
+  {
+    area: "Cardiovascular AI & IoT Telemetry",
+    status: "Ongoing",
+    summary:
+      "Designing continuous vital-sign ingestion pipelines and machine learning classifiers for early myocardial infarction detection.",
   },
   {
-    degree: "Higher Secondary Certificate",
-    school: "Notre Dame College, Dhaka",
-    note: null,
-    year: "2013",
+    area: "GeoAI & Disaster Healthcare Accessibility",
+    status: "Under review",
+    summary:
+      "Modeling multi-metric seismic vulnerability and healthcare facility accessibility across high-risk coastal regions.",
+  },
+  {
+    area: "Spatiotemporal Earth Observation",
+    status: "Thesis",
+    summary:
+      "Applying deep learning and Bayesian spatial statistics to satellite anomaly detection (Sentinel-5P, MODIS) in Bangladesh.",
+  },
+];
+
+export const experienceHighlights = [
+  {
+    label: "Current Role",
+    value: "Sr. Assistant Coordinator & Research Associate — Public health, ML pipelines, and WASH/DRR data systems.",
+  },
+  {
+    label: "Agentic Harnesses",
+    value: "Hermes Agent, Claude, Codex, Antigravity, DeepSeek Harness, Pi, and OpenCode for reproducible research and coding.",
+  },
+  {
+    label: "Primary Workflow",
+    value: "Spec-Driven Development — authoring formal specifications and acceptance criteria before generating or modifying code.",
   },
 ];
 
