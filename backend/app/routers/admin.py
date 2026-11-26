@@ -661,7 +661,10 @@ def publish_to_github(
                 status_code=status.HTTP_303_SEE_OTHER,
             )
 
-        return back_to(request.headers.get("referer", "/back").replace("/back", "") or "/", "Published+to+GitHub+Pages+successfully!")
+        referer = request.headers.get("referer", "")
+        path = urllib.parse.urlparse(referer).path
+        target = path.removeprefix("/back") or "/"
+        return back_to(target, "Published to GitHub Pages successfully!")
     except Exception as e:
         return RedirectResponse(
             f"/back?error=Publish+failed:+{str(e)}",
