@@ -633,9 +633,31 @@ def publish_to_github(
                 check=True,
             )
 
-        # 2. Push to main and feat/content-backend
-        subprocess.run(["git", "push", "origin", "main"], cwd=root_dir, check=False)
-        subprocess.run(["git", "push", "origin", "feat/content-backend"], cwd=root_dir, check=False)
+        # 2. Push to current branch and main
+        env = {**os.environ, "GIT_TERMINAL_PROMPT": "0"}
+        push_feat = subprocess.run(
+            ["git", "push", "origin", "feat/content-backend"],
+            cwd=root_dir,
+            capture_output=True,
+            text=True,
+            env=env,
+        )
+        push_main = subprocess.run(
+            ["git", "push", "origin", "main"],
+            cwd=root_dir,
+            capture_output=True,
+            text=True,
+            env=env,
+        )
+
+        if push_feat.returncode != 0 and push_main.returncode != 0:
+            err_msg = push_feat.stderr.strip() or push_main.stderr.strip() or "Git push failed"
+            if "could not read Username" in err_msg or "Authentication failed" in err_msg:
+                err_msg = "Git credentials not stored on server. Run 'git push' in terminal once to save GitHub credentials."
+            return RedirectResponse(
+                f"/back?error={urllib.parse.quote_plus(err_msg)}",
+                status_code=status.HTTP_303_SEE_OTHER,
+            )
 
         return back_to(request.headers.get("referer", "/back").replace("/back", "") or "/", "Published+to+GitHub+Pages+successfully!")
     except Exception as e:
